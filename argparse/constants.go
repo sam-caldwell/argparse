@@ -8,7 +8,6 @@ const (
 	errNotInitialized     = "argparse not properly initialized"
 	errInvalidArgType     = "invalid argument type %s"
 	errTypeMismatch       = "expected %s (%s)"
-	errFlagExpectsNoValue = "flag arguments expect no value. %s"
 	errMissingArgument    = "missing argument (%s)"
 	errInternalError      = "internal error"
 	errMissingRequiredArg = "missing required argument (%s)"
