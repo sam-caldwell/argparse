@@ -6,18 +6,19 @@ import (
 	"strings"
 )
 
-// AddLongArgument - Add a long argument (--string)
-func (args *Arguments) AddLongArgument(
+// AddShortArgument - add a short argument (-<char>)
+func (args *Arguments) AddShortArgument(
+	shortArg string,
 	name string,
 	argType types.ArgTypes,
 	required bool,
 	argDefault interface{},
 	helpStr string) (err error) {
 
-	argName := strings.TrimSpace(strings.TrimLeft(strings.ToLower(name), "-"))
+	argName := strings.TrimSpace(strings.TrimSpace(name))
 
-	if !isLongArgument(&argName) {
-		return fmt.Errorf("expected long argument for %s", argName)
+	if !isShortArgument(&shortArg) {
+		return fmt.Errorf("expected short argument for %s", argName)
 	}
 
 	return args.addOptionalArgument(
