@@ -4,6 +4,7 @@ import "github.com/sam-caldwell/go-argparse/v2/types"
 
 // Arguments - Argument Parser state
 type Arguments struct {
+	debug       bool
 	programName string
 	copyright   string
 	description string

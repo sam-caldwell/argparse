@@ -14,10 +14,22 @@ func (args *Arguments) parseOptionalArgs() (err error) {
 	var thisArg types.ArgString
 	var thisType types.ArgTypes
 	var expectArg bool = true
-	for {
+	args.Debug("parseOptionalArgs() starting")
+	for count := 0; true; count++ {
+		args.Debugf("count: %d", count)
 		//Get the next value from os.Args
 		if thisToken, err = pop(&os.Args); err != nil {
-			return err
+			if len(args.positional) > count {
+				args.Debug("parseOptionalArgs() err: %v", err)
+				return err
+			} else {
+				for name, arg := range args.optional {
+					if _, ok := args.value[name]; !ok && arg.argRequired {
+						return fmt.Errorf("error: required argument missing: %s", name)
+					}
+				}
+				return nil
+			}
 		}
 		if expectArg {
 			//Get argument term (--arg)
@@ -61,7 +73,6 @@ func (args *Arguments) parseOptionalArgs() (err error) {
 				return fmt.Errorf(errTypeMismatch, thisType.String(), thisArg)
 			}
 		}
-
-	}
-
+	} /* end of for */
+	return nil
 }
