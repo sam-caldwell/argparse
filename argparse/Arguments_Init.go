@@ -6,8 +6,8 @@ import (
 	"path"
 )
 
-// Init - Initialize Argument Parser
-func (args *Arguments) Init(description string) {
+// Init - Initialize Argument Parser (memory plus parameter list)
+func (args *Arguments) Init(params ...string) {
 
 	args.programName = path.Base(func() string {
 		v, err := pop(&os.Args)
@@ -17,7 +17,9 @@ func (args *Arguments) Init(description string) {
 		return v
 	}())
 
-	args.description = description
+	for _, parameter := range params {
+		args.descriptor = append(args.descriptor, parameter)
+	}
 
 	args.optional = make(map[types.ArgString]OptionalParameters)
 

@@ -6,8 +6,7 @@ import "github.com/sam-caldwell/go-argparse/v2/types"
 type Arguments struct {
 	debug       bool
 	programName string
-	copyright   string
-	description string
+	descriptor  []string
 	positional  []PositionalArguments
 	optional    map[types.ArgString]OptionalParameters
 	value       map[types.ArgString]interface{}
