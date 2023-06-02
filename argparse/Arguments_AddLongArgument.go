@@ -17,7 +17,7 @@ func (args *Arguments) AddLongArgument(
 	argName := strings.TrimSpace(strings.TrimLeft(strings.ToLower(name), "-"))
 
 	if !isLongArgument(&argName) {
-		return fmt.Errorf("expected long argument for %s", argName)
+		return fmt.Errorf(errExpectedLongArg, argName)
 	}
 
 	return args.addOptionalArgument(

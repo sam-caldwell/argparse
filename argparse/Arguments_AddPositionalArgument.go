@@ -18,14 +18,15 @@ func (args *Arguments) AddPositionalArgument(
 		return fmt.Errorf(errNotInitialized)
 	}
 
-	if !argType.Valid() {
+	//positional arguments cannot be flags
+	if !argType.Valid() || (argType == types.Flag) {
 		return fmt.Errorf(errInvalidArgType, argType.String())
 	}
 
 	argName := types.ArgString(strings.TrimSpace(strings.ToLower(name)))
 
 	if reservedPositionalArgument(&argName) {
-		return
+		return fmt.Errorf(errReservedArg, fmt.Sprintf("%d", len(args.positional)), name)
 	}
 
 	args.positional = append(args.positional, PositionalArguments{

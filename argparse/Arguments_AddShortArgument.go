@@ -18,7 +18,7 @@ func (args *Arguments) AddShortArgument(
 	argName := strings.TrimSpace(strings.TrimSpace(name))
 
 	if !isShortArgument(&shortArg) {
-		return fmt.Errorf("expected short argument for %s", argName)
+		return fmt.Errorf(errExpectedShortArg, argName)
 	}
 
 	return args.addOptionalArgument(
