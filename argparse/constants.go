@@ -16,4 +16,6 @@ const (
 	errInternalError      = "internal error"
 	errMissingRequiredArg = "missing required argument (%s)"
 	errNotEnoughArgs      = "not enough arguments"
+	errExpectedShortArg   = "expected short argument for %s"
+	errExpectedLongArg    = "expected long argument for %s"
 )
