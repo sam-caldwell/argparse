@@ -18,12 +18,21 @@ func (args *Arguments) parsePositionalArgs() (err error) {
 	}
 
 	//Assumption: pop() will remove program name (arg 0) when .Init() is called.
+	//            This means arg 1-n will be positional for every positional argument
+	//            encountered.
 	for _, argument := range args.positional {
 		argName := argument.argName
+
 		thisValue, err := pop(&os.Args)
 		if err != nil {
 			return err
 		}
+
+		if isLongArgument(&thisValue) || isShortArgument(&thisValue) {
+			return fmt.Errorf(errPositionalArgFirst)
+		}
+
+		// Process the value based on its type.
 		switch argument.argType {
 		case types.Boolean:
 			if args.value[argName], err = strconv.ParseBool(thisValue); err != nil {

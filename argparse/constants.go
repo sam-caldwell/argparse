@@ -18,4 +18,5 @@ const (
 	errNotEnoughArgs      = "not enough arguments"
 	errExpectedShortArg   = "expected short argument for %s"
 	errExpectedLongArg    = "expected long argument for %s"
+	errPositionalArgFirst = "positional arguments must be before any optional arguments"
 )
