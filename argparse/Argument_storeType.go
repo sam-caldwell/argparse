@@ -1,14 +1,14 @@
 package argparse
 
 import (
-	"fmt"
 	"github.com/sam-caldwell/go-argparse/v2/types"
 )
 
-// storeType - return boolean result
+// storeType - sanitize the given type.  Store it if valid.  return error state
 func (arg *Argument) storeType(argType types.ArgTypes) (err error) {
-	if argType.Valid() {
-		return nil
+	if err = argType.Valid(); err != nil {
+		return err
 	}
-	return fmt.Errorf(errInvalidArgType, argType.String())
+	arg._Type = argType
+	return nil
 }

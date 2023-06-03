@@ -1,14 +1,14 @@
 package argparse
 
 import (
-	"fmt"
+	"github.com/sam-caldwell/go-argparse/v2/valid"
 	"strings"
 )
 
-// storeHelpString - store a given help string
+// storeHelpString - sanitize help string.  Store if valid.  return error state.
 func (arg *Argument) storeHelpString(help *string) (err error) {
-	if help == nil {
-		return fmt.Errorf(errEmptyOrNilObject)
+	if err = valid.IsValidHelpString(help); err != nil {
+		return err
 	}
 	arg._Help = strings.TrimSpace(*help)
 	return nil
