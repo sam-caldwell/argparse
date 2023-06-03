@@ -1,22 +1,28 @@
 package argparse
 
 const (
-	//Reserved arguments
+	// Exit codes
+	exitArgParseError = 1
+
+	// Reserved arguments
 	argHelpShort = "-h"
 	argHelpLong  = "--help"
-	argHelp      = "help"
+	argHelpName  = "help"
+	hyphen       = "-"
 
 	// Error messages
+	// -- Argument struct methods
+	errMissingDefault   = "missing default value (type: %s)"
+	errEmptyOrNilObject = "missing or nil input"
+
+	// --
 	errInvalidArgument    = "invalid argument (%s)"
-	errReservedArg        = "argparse %s and %s are reserved"
+	errReservedArg        = "commandline argument %s is reserved"
 	errNotInitialized     = "argparse not properly initialized"
-	errInvalidArgType     = "invalid argument type %s"
 	errTypeMismatch       = "expected %s (%s)"
 	errMissingArgument    = "missing argument (%s)"
 	errInternalError      = "internal error"
 	errMissingRequiredArg = "missing required argument (%s)"
 	errNotEnoughArgs      = "not enough arguments"
-	errExpectedShortArg   = "expected short argument for %s"
-	errExpectedLongArg    = "expected long argument for %s"
 	errPositionalArgFirst = "positional arguments must be before any optional arguments"
 )

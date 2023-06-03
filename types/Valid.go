@@ -1,7 +1,9 @@
 package types
 
+import "fmt"
+
 // Valid - Return true if ArgTypes is valid or false if ArgTypes is not valid.
-func (arg *ArgTypes) Valid() (result bool) {
+func (arg *ArgTypes) Valid() (result error) {
 	switch *arg {
 	case String:
 		fallthrough
@@ -12,9 +14,9 @@ func (arg *ArgTypes) Valid() (result bool) {
 	case Float:
 		fallthrough
 	case Flag:
-		result = true
+		result = nil
 	default:
-		result = false
+		result = fmt.Errorf(errInvalidArgType, arg.String())
 	}
 	return result
 }
