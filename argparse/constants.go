@@ -14,7 +14,7 @@ const (
 	// -- Argument struct methods
 	errMissingDefault   = "missing default value (type: %s)"
 	errEmptyOrNilObject = "missing or nil input"
-
+	errParsingCliArgs   = "Error parsing command-line arguments"
 	// --
 	errInvalidArgument    = "invalid argument (%s)"
 	errReservedArg        = "commandline argument %s is reserved"
