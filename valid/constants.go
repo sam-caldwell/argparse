@@ -5,3 +5,9 @@ const (
 	validShortArgRegex = `^-[a-z]$`
 	validLongArgRegex  = `^--[a-z][a-z0-9_-]*[a-z0-9]$`
 )
+
+const (
+	errExpectedShortArg = "expected short argument for %s"
+	errExpectedLongArg  = "expected long argument for %s"
+	errExpectedNameArg  = "expected name argument for %s"
+)

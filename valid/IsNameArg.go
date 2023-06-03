@@ -1,10 +1,14 @@
 package valid
 
 import (
+	"fmt"
 	"regexp"
 )
 
-// IsNameArg - return true if *argument is a valid positional argument name
-func IsNameArg(argument *string) bool {
-	return regexp.MustCompile(validArgRegex).MatchString(*argument)
+// IsNameArg - return nil error if *argument is a valid positional argument name
+func IsNameArg(argument *string) error {
+	if !regexp.MustCompile(validArgRegex).MatchString(*argument) {
+		return nil
+	}
+	return fmt.Errorf(errExpectedNameArg, *argument)
 }
