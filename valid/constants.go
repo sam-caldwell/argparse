@@ -7,6 +7,7 @@ const (
 )
 
 const (
+	errEmptyOrNilObject = "missing or nil input"
 	errExpectedShortArg = "expected short argument for %s"
 	errExpectedLongArg  = "expected long argument for %s"
 	errExpectedNameArg  = "expected name argument for %s"
