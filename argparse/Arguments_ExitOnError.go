@@ -6,7 +6,7 @@ import (
 )
 
 func (arg *Arguments) ExitOnError() *Arguments {
-	if arg.hasErrors() {
+	if arg.HasErrors() {
 		fmt.Println("Error parsing command-line arguments")
 		arg.ShowErrors()
 		fmt.Println("")
