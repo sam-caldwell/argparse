@@ -1,28 +1,28 @@
 package argparse
 
 import (
-	"github.com/sam-caldwell/argparse/v2/types"
 	"testing"
 )
 
-func TestArguments(t *testing.T) {
+func TestArguments_Struct(t *testing.T) {
 	var arg Arguments
-	arg.programName = ""
-	arg.copyright = ""
-	arg.description = ""
-	arg.positional = append(arg.positional, PositionalArguments{
-		argName:    "test",
-		argType:    types.String,
-		argDefault: int64(0),
-		argHelp:    "testHelp",
-	})
-	arg.optional = make(map[types.ArgString]OptionalParameters, 1)
-	arg.optional["test"] = OptionalParameters{
-		argType:     types.Integer,
-		argDefault:  float32(0.0),
-		argHelp:     "testHelp",
-		argRequired: true,
+	if arg.descriptors != nil {
+		t.Fail()
 	}
-	arg.value = make(map[types.ArgString]interface{})
-	arg.value["testValue"] = "myString"
+	if arg.programName != "" {
+		t.Fail()
+	}
+	if arg.preambleText != nil {
+		t.Fail()
+	}
+	if arg.postscriptText != nil {
+		t.Fail()
+	}
+	if arg.err.Count() != 0 {
+		t.Fail()
+	}
+	if arg.results.Count() != 0 {
+		t.Fail()
+	}
+
 }

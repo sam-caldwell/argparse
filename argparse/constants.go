@@ -4,12 +4,6 @@ const (
 	// Exit codes
 	exitArgParseError = 1
 
-	// Reserved arguments
-	argHelpShort = "-h"
-	argHelpLong  = "--help"
-	argHelpName  = "help"
-	hyphen       = "-"
-
 	// Error messages
 	// -- Argument struct methods
 	errMissingDefault   = "missing default value (type: %s)"
