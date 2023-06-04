@@ -1,12 +1,9 @@
 package errorset
 
-import "fmt"
-
-// Peek - Return the error at position i.
+// Peek - Return the error at position i or a bounds check error
 func (err *ErrorSet) Peek(i int) error {
-	sz := len((*err).e)
-	if (i < 0) || (i > sz) {
-		return fmt.Errorf("ErrorSet.Peek() bounds check error %d", i)
+	if (i < 0) || (i > err.Count()) {
+		panic(errBoundsCheckError)
 	}
 	return (*err).e[i]
 }
