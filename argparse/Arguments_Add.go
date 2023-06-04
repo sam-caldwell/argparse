@@ -1,7 +1,7 @@
 package argparse
 
 import (
-	"github.com/sam-caldwell/go-argparse/v2/types"
+	"github.com/sam-caldwell/argparse/v2/types"
 )
 
 // Add - append the given Argument object to the list of Arguments.
@@ -12,7 +12,7 @@ func (arg *Arguments) Add(name string, short string, long string,
 	var newArgument Argument
 	err := newArgument.Add(name, short, long, argType, required, argDefault, help)
 	if err != nil {
-		arg.err = err
+		arg.err.Push(err)
 	}
 	(*arg).set = append((*arg).set, newArgument)
 	return arg

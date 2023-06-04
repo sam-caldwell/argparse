@@ -1,11 +1,11 @@
-package argparse
+package argument
 
 import (
-	"github.com/sam-caldwell/go-argparse/v2/types"
+	"github.com/sam-caldwell/argparse/v2/types"
 )
 
 // Add - Sanitize an argument object's values
-func (arg *Argument) Add(name string, short string, long string,
+func (arg *Descriptor) Add(name string, short string, long string,
 	argType types.ArgTypes, required bool, argDefault any,
 	help string) (err error) {
 

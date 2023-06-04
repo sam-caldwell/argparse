@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/sam-caldwell/go-argparse/v2/argparse"
-	"github.com/sam-caldwell/go-argparse/v2/types"
+	"github.com/sam-caldwell/argparse/v2/argparse"
+	"github.com/sam-caldwell/argparse/v2/types"
 	"log"
 )
 

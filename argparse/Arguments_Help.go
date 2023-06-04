@@ -2,16 +2,17 @@ package argparse
 
 import (
 	"fmt"
+	"os"
 )
 
 // Help - Print Argument usage (help text)
-func (args *Arguments) Help() (text string) {
-	text = fmt.Sprintf("\n%s\n\n", args.programName)
+func (arg *Arguments) Help() (text string) {
+	text = fmt.Sprintf("\n%s\n\n", os.Args[0])
 
-	for _, line := range args.descriptor {
+	for _, line := range arg.descriptor {
 		text += line + "\n"
 	}
-	for argName, argument := range args.optional {
+	for argName, argument := range arg.optional {
 		text += fmt.Sprintf("\t%s [%s] - %s\n",
 			argName,
 			argument.argType.String(),

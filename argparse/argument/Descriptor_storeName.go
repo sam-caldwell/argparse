@@ -1,13 +1,13 @@
-package argparse
+package argument
 
 import (
 	"fmt"
-	"github.com/sam-caldwell/go-argparse/v2/valid"
+	"github.com/sam-caldwell/argparse/v2/valid"
 	"strings"
 )
 
-// storeLong - return boolean result
-func (arg *Argument) storeName(argument *string) (err error) {
+// storeLong - store the positional (named) argument
+func (arg *Descriptor) storeName(argument *string) (err error) {
 	if err = valid.IsNameArg(argument); err != nil {
 		return err
 	}

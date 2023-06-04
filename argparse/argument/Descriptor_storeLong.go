@@ -1,18 +1,18 @@
-package argparse
+package argument
 
 import (
 	"fmt"
-	"github.com/sam-caldwell/go-argparse/v2/valid"
+	"github.com/sam-caldwell/argparse/v2/valid"
 	"strings"
 )
 
-// storeLong - return boolean result
-func (arg *Argument) storeLong(argument *string) (err error) {
+// storeLong - store a long argument (--string)
+func (arg *Descriptor) storeLong(argument *string) (err error) {
 	if err = valid.IsLongArg(argument); err != nil {
 		return err
 	}
 
-	if *argument == argHelpShort {
+	if *argument == argHelpLong {
 		return fmt.Errorf(errReservedArg, *argument)
 	}
 

@@ -1,9 +1,9 @@
-package argparse
+package argument
 
 import "strings"
 
 // searchOptionalArguments - search the arguments for thisArg and return the Argument record or error
-func (arg *Arguments) searchOptionalArguments(thisArg *string) (*Argument, bool) {
+func (arg *Descriptor) searchOptionalArguments(thisArg *string) (*Descriptor, bool) {
 	trimmedArg := strings.TrimLeft(*thisArg, hyphen)
 	if foundArg, found := arg.GetShort(&trimmedArg); found { //nil error means we found something
 		return foundArg, found

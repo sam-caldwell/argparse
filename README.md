@@ -1,4 +1,4 @@
-go-argparse
+argparse
 ===========
 
 ## Description

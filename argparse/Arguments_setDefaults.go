@@ -1,11 +1,11 @@
 package argparse
 
-func (args *Arguments) setDefaults() (err error) {
-	for _, argument := range args.positional {
-		args.value[argument.argName] = argument.argDefault
+func (arg *Arguments) setDefaults() (err error) {
+	for _, argument := range arg.positional {
+		arg.value[argument.argName] = argument.argDefault
 	}
-	for name, argument := range args.optional {
-		args.value[name] = argument.argDefault
+	for name, argument := range arg.optional {
+		arg.value[name] = argument.argDefault
 	}
 	return nil
 }

@@ -1,12 +1,12 @@
-package argparse
+package argument
 
 import (
-	"github.com/sam-caldwell/go-argparse/v2/valid"
+	"github.com/sam-caldwell/argparse/v2/valid"
 	"strings"
 )
 
 // storeHelpString - sanitize help string.  Store if valid.  return error state.
-func (arg *Argument) storeHelpString(help *string) (err error) {
+func (arg *Descriptor) storeHelpString(help *string) (err error) {
 	if err = valid.IsValidHelpString(help); err != nil {
 		return err
 	}

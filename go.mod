@@ -1,3 +1,3 @@
-module github.com/sam-caldwell/go-argparse/v2
+module github.com/sam-caldwell/argparse/v2
 
 go 1.17

@@ -1,13 +1,13 @@
-package argparse
+package argument
 
 import (
 	"fmt"
-	"github.com/sam-caldwell/go-argparse/v2/valid"
+	"github.com/sam-caldwell/argparse/v2/valid"
 	"strings"
 )
 
-// storeShort - return boolean result
-func (arg *Argument) storeShort(argument *string) (err error) {
+// storeShort - store a short arg -{char}
+func (arg *Descriptor) storeShort(argument *string) (err error) {
 	if err = valid.IsShortArg(argument); err != nil {
 		return err
 	}

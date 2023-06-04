@@ -1,8 +1,8 @@
 package argparse
 
 import (
-	"github.com/sam-caldwell/go-argparse/v2/argparse/parsed"
-	"github.com/sam-caldwell/go-argparse/v2/errorset"
+	"github.com/sam-caldwell/argparse/v2/argparse/parsed"
+	"github.com/sam-caldwell/argparse/v2/errorset"
 )
 
 // Arguments - Top-Level ArgParse struct

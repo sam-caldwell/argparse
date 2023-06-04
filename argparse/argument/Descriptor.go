@@ -1,11 +1,11 @@
-package argparse
+package argument
 
 import (
-	"github.com/sam-caldwell/go-argparse/v2/types"
+	"github.com/sam-caldwell/argparse/v2/types"
 )
 
-// Argument - An Argument Descriptor
-type Argument struct {
+// Descriptor - An Descriptor Descriptor
+type Descriptor struct {
 	_Short    string
 	_Long     string
 	_Name     string
