@@ -1,7 +1,7 @@
 package errorset
 
-// Pop - Return ErrorSet[0] and remove this element
-func (err *ErrorSet) Pop() error {
+// Pop - Return Set[0] and remove this element
+func (err *Set) Pop() error {
 	if len((*err).e) > 0 {
 		defer func() {
 			(*err).e = append((*err).e[:0], (*err).e[1:]...)

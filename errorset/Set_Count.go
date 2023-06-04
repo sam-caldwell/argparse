@@ -1,6 +1,6 @@
 package errorset
 
 // Count - return a count of the elements in the set
-func (err *ErrorSet) Count() int {
+func (err *Set) Count() int {
 	return len((*err).e)
 }

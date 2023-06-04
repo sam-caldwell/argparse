@@ -1,5 +1,5 @@
 package errorset
 
 const (
-	errBoundsCheckError = "ErrorSet.Peek() bounds check error"
+	errBoundsCheckError = "bounds check error"
 )

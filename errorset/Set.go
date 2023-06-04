@@ -1,5 +1,5 @@
 package errorset
 
-type ErrorSet struct {
+type Set struct {
 	e []error
 }
