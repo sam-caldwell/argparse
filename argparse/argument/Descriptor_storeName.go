@@ -16,7 +16,7 @@ func (arg *Descriptor) storeName(argument *string) (err error) {
 		return fmt.Errorf(errReservedArg, *argument)
 	}
 
-	arg._Name = strings.ToLower(
+	arg.name = strings.ToLower(
 		strings.TrimSpace(
 			strings.TrimLeft(
 				strings.TrimSpace(*argument),

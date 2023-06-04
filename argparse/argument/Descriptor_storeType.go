@@ -9,6 +9,6 @@ func (arg *Descriptor) storeType(argType types.ArgTypes) (err error) {
 	if err = argType.Valid(); err != nil {
 		return err
 	}
-	arg._Type = argType
+	arg.typ = argType
 	return nil
 }

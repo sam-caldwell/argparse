@@ -10,6 +10,6 @@ func (arg *Descriptor) storeHelpString(help *string) (err error) {
 	if err = valid.IsValidHelpString(help); err != nil {
 		return err
 	}
-	arg._Help = strings.TrimSpace(*help)
+	arg.help = strings.TrimSpace(*help)
 	return nil
 }

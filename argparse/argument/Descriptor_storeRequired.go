@@ -10,7 +10,7 @@ func (arg *Descriptor) storeRequired(t types.ArgTypes, required bool, argDefault
 	if required && (argDefault == nil) {
 		return fmt.Errorf(errMissingDefault, t.String())
 	}
-	arg._Required = required
-	arg._Default = argDefault
+	arg.required = required
+	arg.defaultValue = argDefault
 	return t.Typecheck(argDefault)
 }
