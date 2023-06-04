@@ -1,14 +1,16 @@
 package types
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 // Typecheck -type-check the default value
 func (arg *ArgTypes) Typecheck(argDefault any) (err error) {
 	var ok bool
-	if argDefault == nil {
-		err = nil
-	} else {
-		switch argDefault {
+
+	if argDefault != nil {
+		switch *arg {
 		case Boolean:
 			if _, ok = argDefault.(bool); ok {
 				return fmt.Errorf(eMsgTypeCheckBoolean)
@@ -22,7 +24,7 @@ func (arg *ArgTypes) Typecheck(argDefault any) (err error) {
 				return fmt.Errorf(eMsgTypeCheckFloat)
 			}
 		case Integer:
-			if _, ok = argDefault.(int64); ok {
+			if _, ok := argDefault.(int64); !ok {
 				return fmt.Errorf(eMsgTypeCheckInteger)
 			}
 		case String:
@@ -30,6 +32,7 @@ func (arg *ArgTypes) Typecheck(argDefault any) (err error) {
 				return fmt.Errorf(eMsgTypeCheckString)
 			}
 		default:
+			log.Printf("%v", argDefault)
 			return fmt.Errorf(eMsgTypeCheckUnknown)
 		}
 	}

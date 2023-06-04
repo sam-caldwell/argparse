@@ -16,7 +16,7 @@ func (arg *ArgTypes) String() (result string) {
 	case Flag:
 		result = "Flag"
 	default:
-		result = fmt.Sprintf("unknown(%d)", *arg)
+		result = fmt.Sprintf(errUnknownType, *arg)
 	}
 	return result
 }

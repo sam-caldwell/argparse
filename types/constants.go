@@ -39,4 +39,6 @@ const (
 	eMsgTypeCheckUnknown = "type-check failed (unknown type)"
 
 	errInvalidArgType = "invalid argument type %s"
+
+	errUnknownType = "unknown-type(%d)"
 )
