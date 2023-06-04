@@ -7,12 +7,12 @@ import (
 )
 
 func TestIsValidYear(t *testing.T) {
-	invalid_years := map[int]error{
+	invalidYears := map[int]error{
 		-1:    fmt.Errorf(errInvalidYear, -1),
 		-2024: fmt.Errorf(errInvalidYear, -2024),
 		12024: fmt.Errorf(errInvalidYear, 12024),
 	}
-	for year, expectedError := range invalid_years {
+	for year, expectedError := range invalidYears {
 		expectedYear := strings.TrimSpace(fmt.Sprintf("%d", year))
 		actualYear, err := IsValidYear(year)
 		if err != nil {
