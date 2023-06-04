@@ -6,8 +6,9 @@ import (
 	"strings"
 )
 
-// storeLong - store the positional (named) argument
+// storeName - store the positional (named) argument
 func (arg *Descriptor) storeName(argument *string) (err error) {
+
 	if err = valid.IsNameArg(argument); err != nil {
 		return err
 	}
@@ -16,11 +17,7 @@ func (arg *Descriptor) storeName(argument *string) (err error) {
 		return fmt.Errorf(errReservedArg, *argument)
 	}
 
-	arg.name = strings.ToLower(
-		strings.TrimSpace(
-			strings.TrimLeft(
-				strings.TrimSpace(*argument),
-				hyphen)))
+	arg.name = strings.ToLower(strings.TrimSpace(*argument))
 
 	return err
 }

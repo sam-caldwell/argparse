@@ -5,8 +5,14 @@ import "testing"
 // TestDescriptor_GetShort - Test GetShort
 func TestDescriptor_GetShort(t *testing.T) {
 	var descriptor Descriptor
-	descriptor.short = "-o"
-	if descriptor.GetShort() != "-o" {
-		t.Fail()
+
+	const (
+		actual   = "--short_arg--"
+		expected = "--short_arg--"
+	)
+
+	descriptor.short = actual
+	if result := descriptor.GetShort(); result != expected {
+		t.Fatalf("GetShort() mismatch: %s %s", result, expected)
 	}
 }

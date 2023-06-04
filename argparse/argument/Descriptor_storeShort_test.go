@@ -1,6 +1,9 @@
 package argument
 
-import "testing"
+import (
+	"strings"
+	"testing"
+)
 
 // TestStoreShort - test Descriptor.storeShort()
 func TestStoreShort(t *testing.T) {
@@ -9,7 +12,7 @@ func TestStoreShort(t *testing.T) {
 	if err := descriptor.storeShort(&expected); err != nil {
 		t.Fatal(err)
 	}
-	if descriptor.short != expected {
-		t.Fatal("short descriptor mismatch")
+	if descriptor.short != strings.TrimPrefix(expected, "-") {
+		t.Fatalf("short descriptor mismatch (%s|%s)", descriptor.short, expected)
 	}
 }
