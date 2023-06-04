@@ -8,8 +8,16 @@ func TestDescriptorMap(t *testing.T) {
 		t.Fatal("initial state should be nil")
 	}
 	d = make(DescriptorMap)
-	d["test"] = Descriptor{}
+	d["test1"] = Descriptor{}
 	if len(d) != 1 {
-		t.Fatal("expected size 1")
+		t.Fatal("expected size 1(a)")
+	}
+	d["test1"] = Descriptor{}
+	if len(d) != 1 {
+		t.Fatal("expected size 1(b)")
+	}
+	d["test2"] = Descriptor{}
+	if len(d) != 2 {
+		t.Fatal("expected size 2")
 	}
 }
