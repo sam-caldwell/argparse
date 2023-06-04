@@ -19,21 +19,8 @@ const (
 )
 
 const (
-
-	// eMsgTypeCheckBoolean - type-check failed error
-	eMsgTypeCheckBoolean = "type-check failed (expected Boolean)"
-
-	// eMsgTypeCheckFlag - type-check failed error
-	eMsgTypeCheckFlag = "type-check failed (expected Flag)"
-
-	// eMsgTypeCheckFloat - type-check failed error
-	eMsgTypeCheckFloat = "type-check failed (expected Float)"
-
-	// eMsgTypeCheckInteger - type-check failed error
-	eMsgTypeCheckInteger = "type-check failed (expected Integer)"
-
-	// eMsgTypeCheckString - type-check failed error
-	eMsgTypeCheckString = "type-check failed (expected String)"
+	// eMsgTypeCheck - type check error string
+	eMsgTypeCheck = "type-check failed (%s)"
 
 	// eMsgTypeCheckUnknown - type-check failed error
 	eMsgTypeCheckUnknown = "type-check failed (unknown type)"

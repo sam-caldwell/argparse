@@ -5,7 +5,6 @@ import (
 )
 
 func TestArgTypes_String(t *testing.T) {
-
 	expected := []string{"Boolean", "Flag", "Float", "Integer", "String"}
 	for pos, thisType := range []ArgTypes{Boolean, Flag, Float, Integer, String} {
 		if thisType.String() != expected[pos] {
