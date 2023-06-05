@@ -9,23 +9,23 @@ func TestDescriptorMap(t *testing.T) {
 
 	initialTest := func() *Map {
 		var d Map
-		if d != nil {
+		if d.data != nil {
 			t.Fatal("initial state should be nil")
 		}
-		d = make(Map)
-		if d == nil {
+		d.data = make(map[string]descriptor.Descriptor)
+		if d.data == nil {
 			t.Fatal("descriptor map should be initialized")
 		}
 		return &d
 	}
 
 	test := func(d *Map, s string, sz int) {
-		if *d == nil {
-			*d = make(Map)
+		if d.data == nil {
+			d.data = make(map[string]descriptor.Descriptor)
 		}
-		(*d)[s] = descriptor.Descriptor{}
-		if len(*d) != sz {
-			t.Fatalf("expected size %d not realized (%d): %s", len(*d), sz, s)
+		d.data[s] = descriptor.Descriptor{}
+		if len(d.data) != sz {
+			t.Fatalf("expected size %d not realized (%d): %s", len(d.data), sz, s)
 		}
 	}
 
