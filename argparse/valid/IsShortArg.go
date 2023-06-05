@@ -5,7 +5,7 @@ import (
 	"regexp"
 )
 
-// IsShortArg - return nil error if *argument is a valid short argument (-{char})
+// IsShortArg - return nil error if *descriptor is a valid short descriptor (-{char})
 func IsShortArg(argument *string) error {
 	if argument == nil {
 		return fmt.Errorf(errEmptyOrNilObject)

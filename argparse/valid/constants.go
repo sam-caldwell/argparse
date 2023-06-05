@@ -9,9 +9,9 @@ const (
 
 const (
 	errEmptyOrNilObject = "missing or nil input"
-	errExpectedShortArg = "expected short argument for '%s'"
-	errExpectedLongArg  = "expected long argument for '%s'"
-	errExpectedNameArg  = "expected name argument for '%s'"
+	errExpectedShortArg = "expected short descriptor for '%s'"
+	errExpectedLongArg  = "expected long descriptor for '%s'"
+	errExpectedNameArg  = "expected name descriptor for '%s'"
 
 	errInvalidYear = "invalid year %d"
 )

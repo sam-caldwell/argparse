@@ -5,7 +5,7 @@ import (
 	"regexp"
 )
 
-// IsNameArg - return nil error if *argument is a valid positional argument name
+// IsNameArg - return nil error if *descriptor is a valid positional descriptor name
 func IsNameArg(argument *string) error {
 	if argument == nil {
 		return fmt.Errorf(errEmptyOrNilObject)

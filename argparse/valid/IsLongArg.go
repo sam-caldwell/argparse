@@ -5,7 +5,7 @@ import (
 	"regexp"
 )
 
-// IsLongArg - return nil error if *argument is a valid long argument (--{string})
+// IsLongArg - return nil error if *descriptor is a valid long descriptor (--{string})
 func IsLongArg(argument *string) error {
 	if argument == nil {
 		return fmt.Errorf(errEmptyOrNilObject)
