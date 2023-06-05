@@ -8,5 +8,6 @@ const (
 )
 
 const (
+	errArgExists   = "duplicate argument encountered"
 	errReservedArg = "commandline descriptor %s is reserved"
 )
