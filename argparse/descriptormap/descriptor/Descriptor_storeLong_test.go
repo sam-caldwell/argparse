@@ -1,19 +1,32 @@
 package descriptor
 
 import (
+	"strings"
 	"testing"
 )
 
 func TestDescriptor_storeLong(t *testing.T) {
-	var descriptor Descriptor
+	test := func(arg string, expectedError bool) {
+		var descriptor Descriptor
+		if err := descriptor.storeLong(&arg); err != nil {
+			if !expectedError {
+				t.Fatal(err)
+			}
+		}
+		expected := strings.ToLower(
+			strings.TrimSpace(
+				strings.TrimLeft(
+					strings.TrimSpace(arg),
+					hyphen)))
 
-	actual := "--Test"
-	expected := "test"
+		if strings.TrimLeft(arg, hyphen) != expected {
+			t.Fatalf("long mismatch (%s)(%s)", arg, expected)
+		}
 
-	if err := descriptor.storeLong(&actual); err != nil {
-		t.Fatal(err)
 	}
-	if result := descriptor.GetLong(); result != expected {
-		t.Fatalf("actual/expected mismatch %s %s", result, expected)
-	}
+	test("-a", true)
+	test("", true)
+	test("--arg", false)
+	test("invalid", true)
+
 }

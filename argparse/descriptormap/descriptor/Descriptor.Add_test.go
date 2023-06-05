@@ -1,31 +1,29 @@
 package descriptor
 
 import (
-	"errors"
 	"github.com/sam-caldwell/argparse/v2/argparse/types"
 	"testing"
 )
 
 func TestDescriptor_Add(t *testing.T) {
 
-	test := func(short, long string, typ types.ArgTypes, required bool, dValue any, help string, expectError error) {
+	test := func(short, long string, typ types.ArgTypes, required bool, dValue any, help string) {
 		var argDesc Descriptor
+
 		if err := argDesc.Add(short, long, typ, required, dValue, help); err != nil {
-			if expectError != nil {
-				if err != expectError {
-					t.Fatal(err)
-				}
-			} else {
+			if err != nil {
 				t.Fatal(err)
 			}
 		}
 	}
 
 	//Expect no issue
-	test("-a", "--all", types.Boolean, true, true, "test help", errors.New(errArgExists))
+	test("-a", "--all", types.Boolean, true, true, "test help")
 
 	//Expect error: -a is a duplicate.
-	test("-a", "--all", types.Boolean, true, true, "test help", errors.New(errArgExists))
+	test("-a", "--all", types.Boolean, true, true, "test help")
+
+	test("", "", types.Boolean, true, true, "test help")
 
 	//Expect error: -a cannot be assigned with a different long (--ball) when --all is assigned.
 	//test("-a", "--ball", types.Boolean, true, true, "test help", true)

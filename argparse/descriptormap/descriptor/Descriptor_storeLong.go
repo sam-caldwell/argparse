@@ -8,6 +8,11 @@ import (
 
 // storeLong - store a long descriptor (--string)
 func (arg *Descriptor) storeLong(argument *string) (err error) {
+	if strings.TrimSpace(*argument) == "" {
+		arg.long = ""
+		return nil
+	}
+
 	if err = valid.IsLongArg(argument); err != nil {
 		return err
 	}

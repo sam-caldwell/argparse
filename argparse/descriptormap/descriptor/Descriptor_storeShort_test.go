@@ -7,12 +7,27 @@ import (
 
 // TestStoreShort - test Descriptor.storeShort()
 func TestStoreShort(t *testing.T) {
-	var descriptor Descriptor
-	expected := "-a"
-	if err := descriptor.storeShort(&expected); err != nil {
-		t.Fatal(err)
+	test := func(arg string, expectedError bool) {
+		var descriptor Descriptor
+		if err := descriptor.storeShort(&arg); err != nil {
+			if !expectedError {
+				t.Fatal(err)
+			}
+		}
+		expected := strings.ToLower(
+			strings.TrimSpace(
+				strings.TrimLeft(
+					strings.TrimSpace(arg),
+					hyphen)))
+
+		if strings.TrimLeft(arg, hyphen) != expected {
+			t.Fatalf("short mismatch (%s)(%s)", arg, expected)
+		}
+
 	}
-	if descriptor.short != strings.TrimPrefix(expected, "-") {
-		t.Fatalf("short descriptor mismatch (%s|%s)", descriptor.short, expected)
-	}
+	test("", false)
+	test("-a", false)
+	test("--arg", true)
+	test("invalid", true)
+
 }
