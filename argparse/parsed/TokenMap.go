@@ -1,10 +1,10 @@
 package parsed
 
 import (
-	"github.com/sam-caldwell/argparse/v2/argparse/parsedelement"
+	"github.com/sam-caldwell/argparse/v2/argparse/parsed/token"
 )
 
-// Argument - a map of ArgumentElement objects
-type Argument struct {
-	data map[string]parsedelement.ArgumentElement
+// TokenMap - a map of Token objects
+type TokenMap struct {
+	data map[string]token.Token
 }

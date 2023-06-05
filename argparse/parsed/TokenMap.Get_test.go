@@ -7,13 +7,16 @@ import (
 
 func TestArgumentElementMap_Get(t *testing.T) {
 
-	var set Token
+	var set TokenMap
 
+	//test() is the test function that takes a name, type and value
 	test := func(n string, typ types.ArgTypes, value any) {
-		err := set.Add(n, typ, value)
+		//Add element to the TokenMap.Add()
+		err := set.Add(&n, typ, &value)
 		if err != nil {
 			t.Fatal(err)
 		}
+		//Get the added token and verify the result.
 		if o := set.Get(n); o == nil {
 			t.Fatal("expected record not found")
 		} else {

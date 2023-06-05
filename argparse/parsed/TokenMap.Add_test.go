@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestArgumentElementSet_Add(t *testing.T) {
+func TestTokenMap_Add(t *testing.T) {
 	var set TokenMap
 
 	test := func(n string, typ types.ArgTypes, value any, expectRecord bool, typeCheckFail bool) {

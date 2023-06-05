@@ -1,4 +1,4 @@
-package parsedset
+package parsed
 
 const (
 	errTypeCannotChange = "type-check failed (%s)"

@@ -1,17 +1,17 @@
 package parsed
 
 import (
-	"github.com/sam-caldwell/argparse/v2/argparse/parsedelement"
-	"github.com/sam-caldwell/argparse/v2/types"
+	"github.com/sam-caldwell/argparse/v2/argparse/parsed/token"
+	"github.com/sam-caldwell/argparse/v2/argparse/types"
 	"testing"
 )
 
-func TestArgumentElementMap_Lookup(t *testing.T) {
-	var set Argument
-	set.data = make(map[string]parsedelement.ArgumentElement)
+func TestTokenMap_Lookup(t *testing.T) {
+	var set TokenMap
+	set.data = make(map[string]token.Token)
 
 	test := func(n string, typ types.ArgTypes, value any, expectRecord bool) {
-		var element parsedelement.ArgumentElement
+		var element token.Token
 		if err := element.Set(typ, value); err != nil {
 			t.Fatal(err)
 		}
