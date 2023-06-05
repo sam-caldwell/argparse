@@ -8,9 +8,6 @@ import (
 // TestDescriptor_Struct - Test initial state of the Descriptor struct
 func TestDescriptor_Struct(t *testing.T) {
 	var d Descriptor
-	if d.name != "" {
-		t.Fail()
-	}
 	if d.short != "" {
 		t.Fail()
 	}

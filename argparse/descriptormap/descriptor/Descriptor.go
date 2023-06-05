@@ -6,7 +6,6 @@ import (
 
 // Descriptor - A Descriptor struct
 type Descriptor struct {
-	name     string         // positional arg and final name
 	short    string         // short descriptor
 	long     string         // long descriptor
 	typ      types.ArgTypes // descriptor type
