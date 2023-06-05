@@ -7,7 +7,7 @@ import (
 )
 
 // storeName - store the positional (named) descriptor
-func (arg *descriptor.Descriptor) storeName(argument *string) (err error) {
+func (arg *Descriptor) storeName(argument *string) (err error) {
 
 	if err = valid.IsNameArg(argument); err != nil {
 		return err

@@ -5,9 +5,9 @@ import (
 )
 
 // storeRequired - store the required flag and type-check the default value
-func (arg *descriptor.Descriptor) storeRequired(t types.ArgTypes, required bool, argDefault any) (err error) {
-	arg.defaultValue = argDefault
+func (arg *Descriptor) storeRequired(t types.ArgTypes, required bool, dValue any) (err error) {
+	arg.dValue = dValue
 	arg.required = required
 	arg.typ = t
-	return t.Typecheck(argDefault)
+	return t.Typecheck(dValue)
 }

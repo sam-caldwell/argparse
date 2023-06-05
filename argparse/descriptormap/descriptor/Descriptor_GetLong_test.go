@@ -6,15 +6,15 @@ import (
 
 // TestDescriptor_GetLong - Test GetLong() and assume no sanitization when directly setting param
 func TestDescriptor_GetLong(t *testing.T) {
-	var descriptor Descriptor
-
-	const (
-		actual   = "--long_arg--"
-		expected = "--long_arg--"
-	)
-
-	descriptor.long = actual
-	if result := descriptor.GetLong(); result != expected {
-		t.Fatalf("GetLong() mismatch: %s %s", result, expected)
+	test := func(input string) {
+		var descriptor Descriptor
+		descriptor.long = input
+		if result := descriptor.GetLong(); result != input {
+			t.Fatalf("GetLong() mismatch: %s %s", result, input)
+		}
 	}
+	test("--long-arg")
+	test("--long")
+	test("--long_arg")
+	test("returns anything on GetLong()")
 }

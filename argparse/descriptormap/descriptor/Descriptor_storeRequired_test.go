@@ -5,22 +5,51 @@ import (
 	"testing"
 )
 
-func TestDescriptor_storeRequired_int64(t *testing.T) {
-	var descriptor Descriptor
+func TestDescriptor_storeRequired(t *testing.T) {
+	test := func(typ types.ArgTypes, value any) {
+		var descriptor Descriptor
+		if err := descriptor.storeRequired(typ, true, value); err != nil {
+			t.Fatal(err)
+		}
+		if !descriptor.required {
+			t.Fail()
+		}
+		if descriptor.typ != typ {
+			t.Fail()
+		}
+		if descriptor.dValue != value {
+			t.Fail()
+		}
+		var ok bool
+		switch descriptor.typ {
+		case types.Boolean:
+			_, ok = value.(bool)
+		case types.Flag:
+			_, ok = value.(bool)
+		case types.Float:
+			_, ok = value.(float64)
+		case types.Integer:
+			_, ok = value.(int)
+		case types.String:
+			_, ok = value.(string)
+		default:
+			t.Fatal("unknown type")
+		}
+		if !ok {
+			t.Fatalf("Typecheck failed after StoreRequired (%s) '%v'", typ.String(), value)
+		}
+	}
 
-	argType := types.Integer
-	argDefault := int64(1000)
-
-	if err := descriptor.storeRequired(types.Integer, true, argDefault); err != nil {
-		t.Fatal(err)
-	}
-	if descriptor.typ != argType {
-		t.Fatalf("type mismatch %v %v", descriptor.typ, argType)
-	}
-	if descriptor.required != true {
-		t.Fatal("required mismatch")
-	}
-	if descriptor.defaultValue.(int64) != argDefault {
-		t.Fatal("defaultValue mismatch")
-	}
+	test(types.Boolean, true)
+	test(types.Boolean, false)
+	test(types.Flag, true)
+	test(types.Flag, false)
+	test(types.Float, -1.0)
+	test(types.Float, 0.0)
+	test(types.Float, 1.0)
+	test(types.Integer, -1)
+	test(types.Integer, 0)
+	test(types.Integer, 1337)
+	test(types.String, "")
+	test(types.String, "this is a test string")
 }

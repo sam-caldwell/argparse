@@ -7,7 +7,7 @@ import (
 )
 
 // storeLong - store a long descriptor (--string)
-func (arg *descriptor.Descriptor) storeLong(argument *string) (err error) {
+func (arg *Descriptor) storeLong(argument *string) (err error) {
 	if err = valid.IsLongArg(argument); err != nil {
 		return err
 	}

@@ -6,11 +6,11 @@ import (
 
 // Descriptor - A Descriptor struct
 type Descriptor struct {
-	name         string         // positional arg and final name
-	short        string         // short descriptor
-	long         string         // long descriptor
-	typ          types.ArgTypes // descriptor type
-	required     bool           // indicates the descriptor must provide a value
-	defaultValue interface{}    // provides a default value when not present
-	help         string         // provides help text
+	name     string         // positional arg and final name
+	short    string         // short descriptor
+	long     string         // long descriptor
+	typ      types.ArgTypes // descriptor type
+	required bool           // indicates the descriptor must provide a value
+	dValue   any            // provides a default value when not present
+	help     string         // provides help text
 }

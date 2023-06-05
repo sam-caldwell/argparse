@@ -7,7 +7,7 @@ import (
 )
 
 // storeShort - store a short arg -{char}
-func (arg *descriptor.Descriptor) storeShort(argument *string) (err error) {
+func (arg *Descriptor) storeShort(argument *string) (err error) {
 	if err = valid.IsShortArg(argument); err != nil {
 		return err
 	}

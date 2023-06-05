@@ -6,7 +6,7 @@ import (
 )
 
 // storeHelpString - sanitize help string.  Store if valid.  return error state.
-func (arg *descriptor.Descriptor) storeHelpString(help *string) (err error) {
+func (arg *Descriptor) storeHelpString(help *string) (err error) {
 	if err = valid.IsValidHelpString(help); err != nil {
 		return err
 	}

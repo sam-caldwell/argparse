@@ -23,7 +23,7 @@ func TestDescriptor_Struct(t *testing.T) {
 	if d.required {
 		t.Fail()
 	}
-	if d.defaultValue != nil {
+	if d.dValue != nil {
 		t.Fail()
 	}
 	if d.help != "" {
