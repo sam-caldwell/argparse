@@ -1,4 +1,4 @@
-package argument
+package descriptor
 
 import (
 	"github.com/sam-caldwell/argparse/v2/argparse/valid"
@@ -6,7 +6,7 @@ import (
 )
 
 // storeHelpString - sanitize help string.  Store if valid.  return error state.
-func (arg *Descriptor) storeHelpString(help *string) (err error) {
+func (arg *descriptor.Descriptor) storeHelpString(help *string) (err error) {
 	if err = valid.IsValidHelpString(help); err != nil {
 		return err
 	}

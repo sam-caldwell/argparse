@@ -1,6 +1,8 @@
-package argument
+package descriptor
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestDescriptor_GetHelp(t *testing.T) {
 	var descriptor Descriptor

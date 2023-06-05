@@ -1,6 +1,8 @@
-package argument
+package descriptor
 
-import "testing"
+import (
+	"testing"
+)
 
 // TestDescriptor_GetShort - Test GetShort
 func TestDescriptor_GetShort(t *testing.T) {

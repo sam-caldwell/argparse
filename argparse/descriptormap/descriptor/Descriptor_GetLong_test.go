@@ -1,6 +1,8 @@
-package argument
+package descriptor
 
-import "testing"
+import (
+	"testing"
+)
 
 // TestDescriptor_GetLong - Test GetLong() and assume no sanitization when directly setting param
 func TestDescriptor_GetLong(t *testing.T) {

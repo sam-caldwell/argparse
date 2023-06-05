@@ -1,6 +1,8 @@
-package argument
+package descriptor
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestDescriptor_GetName(t *testing.T) {
 	var descriptor Descriptor

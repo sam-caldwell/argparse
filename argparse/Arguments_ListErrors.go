@@ -6,7 +6,8 @@ import "fmt"
 func (arg *Arguments) ListErrors() (result []string) {
 	if arg.HasErrors() {
 		fmt.Println(errParsingCliArgs)
-		for _, err := range arg.err {
+		for i := 0; i < arg.err.Count(); i++ {
+			err := arg.err.Peek(i)
 			if err != nil {
 				result = append(result, err.Error())
 			}

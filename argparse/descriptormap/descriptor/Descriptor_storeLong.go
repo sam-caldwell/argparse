@@ -1,4 +1,4 @@
-package argument
+package descriptor
 
 import (
 	"fmt"
@@ -6,8 +6,8 @@ import (
 	"strings"
 )
 
-// storeLong - store a long argument (--string)
-func (arg *Descriptor) storeLong(argument *string) (err error) {
+// storeLong - store a long descriptor (--string)
+func (arg *descriptor.Descriptor) storeLong(argument *string) (err error) {
 	if err = valid.IsLongArg(argument); err != nil {
 		return err
 	}

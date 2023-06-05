@@ -5,7 +5,7 @@ import (
 )
 
 // Add - Sanitize and set the descriptor parameters.
-func (arg *Descriptor) Add(name string, short string, long string, argType types.ArgTypes,
+func (arg *descriptor.Descriptor) Add(name string, short string, long string, argType types.ArgTypes,
 	required bool, argDefault any, help string) (err error) {
 
 	if err = arg.storeName(&name); err != nil {

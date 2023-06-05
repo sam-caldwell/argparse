@@ -1,7 +1,7 @@
-package argument
+package descriptor
 
 import (
-	"github.com/sam-caldwell/argparse/v2/types"
+	"github.com/sam-caldwell/argparse/v2/argparse/types"
 	"testing"
 )
 

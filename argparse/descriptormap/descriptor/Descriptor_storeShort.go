@@ -1,4 +1,4 @@
-package argument
+package descriptor
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 )
 
 // storeShort - store a short arg -{char}
-func (arg *Descriptor) storeShort(argument *string) (err error) {
+func (arg *descriptor.Descriptor) storeShort(argument *string) (err error) {
 	if err = valid.IsShortArg(argument); err != nil {
 		return err
 	}

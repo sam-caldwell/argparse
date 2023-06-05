@@ -1,4 +1,4 @@
-package argument
+package descriptor
 
 import (
 	"fmt"
@@ -6,8 +6,8 @@ import (
 	"strings"
 )
 
-// storeName - store the positional (named) argument
-func (arg *Descriptor) storeName(argument *string) (err error) {
+// storeName - store the positional (named) descriptor
+func (arg *descriptor.Descriptor) storeName(argument *string) (err error) {
 
 	if err = valid.IsNameArg(argument); err != nil {
 		return err
