@@ -1,6 +1,7 @@
 package argparse
 
 import (
+	"github.com/sam-caldwell/argparse/v2/argparse/descriptormap"
 	"github.com/sam-caldwell/argparse/v2/argparse/errorset"
 	"github.com/sam-caldwell/argparse/v2/argparse/parsed"
 )
