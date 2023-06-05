@@ -1,13 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"github.com/sam-caldwell/argparse/v2/argparse"
-	"github.com/sam-caldwell/argparse/v2/types"
+	"github.com/sam-caldwell/argparse/v2/argparse/types"
 	"log"
 )
 
 // main - Demonstration program
-
 func main() {
 	log.Println("starting example...")
 	var args argparse.Arguments
@@ -22,4 +22,7 @@ func main() {
 		Add("bool", "-b", "--bool", types.Boolean, true, false, "set boolean").
 		ExitOnError().
 		Parse()
+
+	fmt.Println(args.Help())
+
 }
