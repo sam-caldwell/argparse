@@ -4,13 +4,11 @@ import "fmt"
 
 // ShowErrors - print the list of errors to stdout
 func (arg *Arguments) ShowErrors() *Arguments {
-	if arg.HasErrors() {
+	if arg.err.Count() > 0 {
 		fmt.Println(errParsingCliArgs)
-		for i := 0; i < arg.err.Count(); i++ {
-			err := arg.err.Peek(i)
-			if err != nil {
-				fmt.Printf("%s\n", err.Error())
-			}
+
+		for _, line := range arg.err.List() {
+			fmt.Printf("%s\n", line.Error())
 		}
 	}
 	return arg
