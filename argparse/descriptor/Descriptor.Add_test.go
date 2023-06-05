@@ -1,7 +1,7 @@
-package argument
+package descriptor
 
 import (
-	"github.com/sam-caldwell/argparse/v2/types"
+	"github.com/sam-caldwell/argparse/v2/argparse/types"
 	"strings"
 	"testing"
 )
@@ -17,6 +17,7 @@ func TestDescriptor_Add(t *testing.T) {
 		required   = true
 		defaultArg = int64(1337)
 		help       = "help string"
+		hyphen     = "-"
 	)
 
 	err := descriptor.Add(name, short, long, typ, required, defaultArg, help)
@@ -28,11 +29,11 @@ func TestDescriptor_Add(t *testing.T) {
 		t.Fatal(descriptor.name)
 	}
 
-	if descriptor.short != strings.ToLower(strings.TrimLeft(short, "-")) {
+	if descriptor.short != strings.ToLower(strings.TrimLeft(short, hyphen)) {
 		t.Fatal(descriptor.short)
 	}
 
-	if descriptor.long != strings.ToLower(strings.TrimLeft(long, "-")) {
+	if descriptor.long != strings.ToLower(strings.TrimLeft(long, hyphen)) {
 		t.Fatal(descriptor.long)
 	}
 

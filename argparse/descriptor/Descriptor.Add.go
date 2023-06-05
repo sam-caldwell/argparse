@@ -1,10 +1,10 @@
-package argument
+package descriptor
 
 import (
-	"github.com/sam-caldwell/argparse/v2/types"
+	"github.com/sam-caldwell/argparse/v2/argparse/types"
 )
 
-// Add - Sanitize and set the argument parameters.
+// Add - Sanitize and set the descriptor parameters.
 func (arg *Descriptor) Add(name string, short string, long string, argType types.ArgTypes,
 	required bool, argDefault any, help string) (err error) {
 
