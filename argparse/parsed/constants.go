@@ -1,5 +1,5 @@
-package parsed
+package parsedset
 
 const (
-	errArgumentsCannotChangeTypes = "previously set parameter (%s) cannot change type from '%s' to '%s'"
+	errTypeCannotChange = "type-check failed (%s)"
 )
