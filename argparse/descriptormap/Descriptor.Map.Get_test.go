@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/sam-caldwell/argparse/v2/argparse/descriptormap/descriptor"
 	"github.com/sam-caldwell/argparse/v2/argparse/types"
+	"strings"
 	"testing"
 )
 
@@ -18,15 +19,15 @@ func TestMap_Get(t *testing.T) {
 	}
 	verifyRows := func(name, short, long string, typ types.ArgTypes, required bool, dValue any, help string) {
 		var d *descriptor.Descriptor
-		d := m.Get(name)
+		d = m.Get(name)
 		if d == nil {
-			t.Fatal("Error: row not found %s", name)
+			t.Fatalf("Error: row not found %s", name)
 		} else {
-			if d.GetShort() != short {
-				t.Fatal("short mismatch")
+			if d.GetShort() != strings.TrimLeft(short, "-") {
+				t.Fatalf("short mismatch:%s", d.GetShort())
 			}
-			if d.GetLong() != long {
-				t.Fatal("long mismatch")
+			if d.GetLong() != strings.TrimLeft(long, "-") {
+				t.Fatalf("long mismatch:%s", d.GetLong())
 			}
 		}
 	}
