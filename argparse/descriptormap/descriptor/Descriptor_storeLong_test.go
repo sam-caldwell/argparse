@@ -13,13 +13,9 @@ func TestDescriptor_storeLong(t *testing.T) {
 				t.Fatal(err)
 			}
 		}
-		expected := strings.ToLower(
-			strings.TrimSpace(
-				strings.TrimLeft(
-					strings.TrimSpace(arg),
-					hyphen)))
+		expected := strings.ToLower(strings.TrimSpace(strings.TrimSpace(arg)))
 
-		if strings.TrimLeft(arg, hyphen) != expected {
+		if arg != expected {
 			t.Fatalf("long mismatch (%s)(%s)", arg, expected)
 		}
 

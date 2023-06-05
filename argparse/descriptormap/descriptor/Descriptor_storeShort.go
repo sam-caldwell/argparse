@@ -21,10 +21,7 @@ func (arg *Descriptor) storeShort(argument *string) (err error) {
 		return fmt.Errorf(errReservedArg, *argument)
 	}
 
-	arg.short = strings.ToLower(
-		strings.TrimSpace(
-			strings.TrimLeft(
-				strings.TrimSpace(*argument),
-				hyphen)))
+	arg.short = strings.ToLower(strings.TrimSpace(strings.TrimSpace(*argument)))
+
 	return err
 }
