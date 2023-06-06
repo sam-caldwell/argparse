@@ -20,7 +20,7 @@ func (arg *Arguments) Copyright(year int, author string, email string) *Argument
 
 	email = strings.TrimSpace(email)
 
-	return arg.Preamble(
+	return arg.Postscript(
 		fmt.Sprintf("(c) %s %s <%s>",
 			yearString,
 			author,

@@ -19,7 +19,7 @@ func TestArguments_Copyright(t *testing.T) {
 
 	arg.Copyright(year, author, email)
 
-	if text := arg.preambleText.Pop(); text != expected {
+	if text := arg.postscriptText.Pop(); text != expected {
 		t.Logf("expected: '%s'", expected)
 		t.Logf("    text: '%s'", text)
 		t.Fatal("copyright mismatch")
