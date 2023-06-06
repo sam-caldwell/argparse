@@ -1,6 +1,7 @@
 package argparse
 
 import (
+	"fmt"
 	"github.com/sam-caldwell/argparse/v2/argparse/types"
 	"strings"
 	"testing"
@@ -54,7 +55,7 @@ func TestArguments_Help(t *testing.T) {
 		t.Fatal("Failing due to errors")
 	}
 
-	//fmt.Println(strings.TrimSpace(helpText))
+	fmt.Println(strings.TrimSpace(helpText))
 
 	if strings.TrimSpace(helpText) != strings.TrimSpace(expected) {
 		t.Fatal("help text does not match expected text")
