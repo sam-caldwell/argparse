@@ -11,8 +11,9 @@ func TestArguments_Get(t *testing.T) {
 		t.Fatalf("Expected 0 records. Got %d", count)
 	}
 	arg.Add("test_get", "-g", "", types.Boolean, true, false, "test get")
-	if arg.descriptors.Count() == 1 {
-		t.Fatalf("Expect 1 record")
+
+	if count := arg.Count(); count != 1 {
+		t.Fatalf("Expect 1 record. Got:%d", count)
 	}
 	if arg.Get("test_get").GetShort() != "-g" {
 		t.Fatalf("Expected test_get to have -g short arg")
