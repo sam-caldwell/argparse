@@ -7,9 +7,9 @@ import (
 )
 
 func (m *Map) FindDuplicates(d descriptor.Descriptor) error {
-	var argSet simpleSet.Set
-	var shortSet simpleSet.Set
-	var longSet simpleSet.Set
+	var argSet simpleset.Set
+	var shortSet simpleset.Set
+	var longSet simpleset.Set
 
 	for name, argument := range m.data {
 		if err := argSet.Add(name); err != nil {
