@@ -8,7 +8,9 @@ import (
 func (arg *Arguments) ExitOnError() *Arguments {
 	if arg.HasErrors() {
 		fmt.Println("Error parsing command-line arguments")
-		arg.ShowErrors()
+		for _, e := range arg.Errors() {
+			fmt.Println(e)
+		}
 		fmt.Println("")
 		fmt.Println(arg.Help())
 		os.Exit(exitArgParseError)
