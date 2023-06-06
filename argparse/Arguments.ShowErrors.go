@@ -8,7 +8,7 @@ func (arg *Arguments) ShowErrors() *Arguments {
 		fmt.Println(errParsingCliArgs)
 
 		for _, line := range arg.err.List() {
-			fmt.Printf("%s\n", line.Error())
+			fmt.Printf("%s\n", line.(error).Error())
 		}
 	}
 	return arg

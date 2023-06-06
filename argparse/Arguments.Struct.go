@@ -3,7 +3,7 @@ package argparse
 import (
 	"github.com/sam-caldwell/argparse/v2/argparse/descriptormap"
 	"github.com/sam-caldwell/argparse/v2/argparse/parsed"
-	"github.com/sam-caldwell/orderedset"
+	ordered "github.com/sam-caldwell/orderedset/v2"
 )
 
 /*
@@ -14,8 +14,8 @@ import (
 type Arguments struct {
 	descriptors    descriptormap.Map
 	programName    string
-	preambleText   orderedset.Set
-	postscriptText orderedset.Set
-	err            orderedset.Set
+	preambleText   ordered.Set
+	postscriptText ordered.Set
+	err            ordered.Set
 	results        parsed.TokenMap
 }

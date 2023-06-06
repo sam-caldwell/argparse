@@ -13,10 +13,10 @@ func TestArguments_Struct(t *testing.T) {
 	if arg.programName != "" {
 		t.Fail()
 	}
-	if arg.preambleText != nil {
+	if arg.preambleText.Count() != 0 {
 		t.Fail()
 	}
-	if arg.postscriptText != nil {
+	if arg.postscriptText.Count() != 0 {
 		t.Fail()
 	}
 	if arg.err.Count() != 0 {
