@@ -9,16 +9,14 @@ import (
 func TestArguments_Add(t *testing.T) {
 	var arg Arguments
 
-	t.Log("Counting baseline 0 records")
 	if count := arg.descriptors.Count(); count != 0 {
 		t.Fatalf("Expected 0 records. Got %d", count)
 	}
 
 	p := 0
-	for i := 0; i < 5; i++ {
-		t.Logf("adding %d", i)
+	for i := 0; i < 4; i++ {
 		for n, required := range []bool{true, false} {
-			name := fmt.Sprintf("name%d.%d", i, n)
+			name := fmt.Sprintf("name%d%d", i, n)
 			short := fmt.Sprintf("-%d", p)
 			long := fmt.Sprintf("--arg%d%d", i, n)
 			typ := types.Boolean
@@ -28,31 +26,40 @@ func TestArguments_Add(t *testing.T) {
 			p++
 		}
 	}
-	t.Log("test records added")
 
-	if count := arg.descriptors.Count(); count != 0 {
-		t.Fatalf("Expected 0 records. Got %d", count)
+	if count := arg.descriptors.Count(); count != p {
+		t.Fatalf("Expected %d records. Got %d", p, count)
 	}
-	t.Log("count check passed")
 
 	if count := arg.ErrorCount(); count != 0 {
 		t.Log("error count has errors")
 		for i, e := range arg.err.List() {
-			t.Log(i, e)
+			t.Logf("error(%d):%s", i, e)
 		}
 		t.Fatalf("Expected no errors.  Got: %d", count)
 	}
-	t.Log("we have no errors")
 
-	if arg.descriptors.Get("name0.0").GetShort() != "-0" {
-		t.Fatalf("Expected name0.0 to have -0 short arg")
+	if arg.Get("name00").GetShort() != "-0" {
+		t.Fatal("expected name0.0 to have -0 short arg")
 	}
 
-	if arg.descriptors.Get("name0.0").GetLong() != "--arg00" {
-		t.Fatalf("Expected name0.0 to have -0 short arg")
-	}
-
-	if arg.descriptors.Get("name0.0").GetHelp() != "help string 00" {
-		t.Fatalf("Expected name0.0 to have -0 short arg")
+	p = 0
+	for i := 0; i < 4; i++ {
+		for n, _ := range []bool{true, false} {
+			name := fmt.Sprintf("name%d%d", i, n)
+			short := fmt.Sprintf("-%d", p)
+			long := fmt.Sprintf("--arg%d%d", i, n)
+			help := fmt.Sprintf("help string %d%d", i, n)
+			if arg.Get(name).GetShort() != short {
+				t.Fatalf("expected %s to have %s short arg", name, short)
+			}
+			if arg.Get(name).GetLong() != long {
+				t.Fatalf("expected %s to have %s long arg", name, long)
+			}
+			if arg.Get(name).GetHelp() != help {
+				t.Fatalf("expected %s to have %s help string", name, help)
+			}
+			p++
+		}
 	}
 }

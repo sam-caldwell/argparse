@@ -1,7 +1,6 @@
 package argparse
 
 import (
-	"github.com/sam-caldwell/argparse/v2/argparse/descriptormap/descriptor"
 	"github.com/sam-caldwell/argparse/v2/argparse/types"
 )
 
@@ -27,11 +26,8 @@ func (arg *Arguments) Add(
 	 * +-----------+----------+------------------+-------------------------------------------- - - - -
 	 */
 
-	// Create a new descriptor
-	var thisDescriptor descriptor.Descriptor
-
 	// Add the state to the descriptor and push any error if not nil
-	_ = arg.err.Push(thisDescriptor.Add(short, long, typ, required, argDefault, help))
+	_ = arg.err.Push(arg.descriptors.Add(name, short, long, typ, required, argDefault, help))
 
 	return arg
 }

@@ -22,19 +22,11 @@ func TestArguments_Errors(t *testing.T) {
 	if len(errorList) != 5 {
 		t.Fatal("Expected count 5 not recd")
 	}
-	if errorList[1] != "error1" {
-		t.Fatal("error1 not found")
-	}
-	if errorList[2] != "error2" {
-		t.Fatal("error2 not found")
-	}
-	if errorList[3] != "error3" {
-		t.Fatal("error3 not found")
-	}
-	if errorList[4] != "error4" {
-		t.Fatal("error4 not found")
-	}
-	if errorList[5] != "error5" {
-		t.Fatal("error4 not found")
+
+	for n, e := range errorList {
+		expected := fmt.Sprintf("error%d", n+1)
+		if e != expected {
+			t.Fatalf("%s not found", expected)
+		}
 	}
 }
