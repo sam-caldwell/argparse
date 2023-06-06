@@ -33,7 +33,7 @@ func TestArguments_Add(t *testing.T) {
 
 	if count := arg.ErrorCount(); count != 0 {
 		t.Log("error count has errors")
-		for i, e := range arg.err.List() {
+		for i, e := range arg.Errors() {
 			t.Logf("error(%d):%s", i, e)
 		}
 		t.Fatalf("Expected no errors.  Got: %d", count)
