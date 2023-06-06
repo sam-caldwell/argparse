@@ -13,7 +13,7 @@ func (arg *Arguments) Copyright(year int, author string, email string) *Argument
 
 	yearString, err := valid.IsValidYear(year)
 	if err != nil {
-		arg.err.Push(err)
+		_ = arg.err.Push(err)
 	}
 
 	author = strings.TrimSpace(author)
