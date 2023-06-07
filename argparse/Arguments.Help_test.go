@@ -58,6 +58,17 @@ func TestArguments_Help(t *testing.T) {
 	fmt.Println(strings.TrimSpace(helpText))
 
 	if strings.TrimSpace(helpText) != strings.TrimSpace(expected) {
+		actualLines := strings.Split(strings.TrimSpace(helpText), "\n")
+		expectedLines := strings.Split(strings.TrimSpace(expected), "\n")
+
+		if len(actualLines) != len(expectedLines) {
+			t.Logf("count mismatch (actual: %d, expected: %d", len(actualLines), len(expectedLines))
+		}
+
+		for lineNo, line := range expectedLines {
+			matches := actualLines[lineNo] == expectedLines[lineNo]
+			t.Logf("%d (%v) : %s", lineNo, matches, line)
+		}
 		t.Fatal("help text does not match expected text")
 	}
 }
