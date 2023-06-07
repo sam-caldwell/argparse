@@ -19,5 +19,5 @@ type Arguments struct {
 	preambleText   ordered.Set
 	postscriptText ordered.Set
 	err            ordered.Set
-	results        parsed.TokenMap
+	results        parsed.Namespace
 }

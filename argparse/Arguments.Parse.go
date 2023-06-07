@@ -12,8 +12,8 @@ import (
 // Parse - Parse os.Args
 func (arg *Arguments) Parse() *Arguments {
 
-	var optionalArgEncountered bool = false
-	var valueExpected bool = false
+	var optionalArgEncountered = false
+	var valueExpected = false
 	var thisName *string
 	var thisDescriptor *descriptor.Descriptor = nil
 
