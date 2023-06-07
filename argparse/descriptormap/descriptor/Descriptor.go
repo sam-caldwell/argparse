@@ -6,6 +6,7 @@ import (
 
 // Descriptor - A Descriptor struct
 type Descriptor struct {
+	pos      int            //Expected position (>=0 is a positional arg)
 	short    string         // short descriptor
 	long     string         // long descriptor
 	typ      types.ArgTypes // descriptor type

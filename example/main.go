@@ -16,7 +16,6 @@ func main() {
 		Copyright(2023, "Sam Caldwell", "mail@samcaldwell.net>").
 		Preamble("This is a description of our Arguments Object.").
 		Postscript("This is the postfix string after help is dumped.").
-		ShowErrors().
 		Add("all", "-a", "--all", types.Flag, true, false, "All flag").
 		Add("number", "-n", "--number", types.Integer, true, 1337, "set number").
 		Add("bool", "-b", "--bool", types.Boolean, true, false, "set boolean").

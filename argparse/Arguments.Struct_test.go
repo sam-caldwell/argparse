@@ -7,6 +7,9 @@ import (
 func TestArguments_Struct(t *testing.T) {
 	var arg Arguments
 
+	if arg.index != 0 {
+		t.Fail()
+	}
 	if arg.descriptors.Count() != 0 {
 		t.Fail()
 	}

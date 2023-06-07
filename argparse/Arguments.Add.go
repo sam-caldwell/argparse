@@ -27,7 +27,7 @@ func (arg *Arguments) Add(
 	 */
 
 	// Add the state to the descriptor and push any error if not nil
-	_ = arg.err.Push(arg.descriptors.Add(name, short, long, typ, required, argDefault, help))
+	_ = arg.err.Push(arg.descriptors.Add(&arg.pos, name, short, long, typ, required, argDefault, help))
 
 	return arg
 }

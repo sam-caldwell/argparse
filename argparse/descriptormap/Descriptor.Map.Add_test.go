@@ -9,8 +9,8 @@ import (
 func TestDescriptorMap_Add(t *testing.T) {
 	var m Map
 
-	test := func(name, short, long string, typ types.ArgTypes, required bool, dValue any, help string) {
-		err := m.Add(name, short, long, typ, required, dValue, help)
+	test := func(pos int, name, short, long string, typ types.ArgTypes, required bool, dValue any, help string) {
+		err := m.Add(pos, name, short, long, typ, required, dValue, help)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -63,12 +63,14 @@ func TestDescriptorMap_Add(t *testing.T) {
 		},
 	}
 
+	pos := 0
 	for name, level1 := range testList {
 		for short, level2 := range level1 {
 			for long, level3 := range level2 {
 				for value, typ := range level3 {
 					for _, required := range []bool{true, false} {
-						test(name, short, long, typ, required, value, fmt.Sprintf("help text %s", name))
+						test(pos, name, short, long, typ, required, value, fmt.Sprintf("help text %s", name))
+						pos++
 					}
 				}
 			}

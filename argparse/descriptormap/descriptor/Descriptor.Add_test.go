@@ -7,10 +7,10 @@ import (
 
 func TestDescriptor_Add(t *testing.T) {
 
-	test := func(short, long string, typ types.ArgTypes, required bool, dValue any, help string) {
+	test := func(pos int, short, long string, typ types.ArgTypes, required bool, dValue any, help string) {
 		var argDesc Descriptor
 
-		if err := argDesc.Add(short, long, typ, required, dValue, help); err != nil {
+		if err := argDesc.Add(pos, short, long, typ, required, dValue, help); err != nil {
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -18,17 +18,11 @@ func TestDescriptor_Add(t *testing.T) {
 	}
 
 	//Expect no issue
-	test("-a", "--all", types.Boolean, true, true, "test help")
+	test(-1, "-a", "--all", types.Boolean, true, true, "test help")
 
 	//Expect error: -a is a duplicate.
-	test("-a", "--all", types.Boolean, true, true, "test help")
+	test(-1, "-a", "--all", types.Boolean, true, true, "test help")
 
-	test("", "", types.Boolean, true, true, "test help")
-
-	//Expect error: -a cannot be assigned with a different long (--ball) when --all is assigned.
-	//test("-a", "--ball", types.Boolean, true, true, "test help", true)
-
-	//test("-a", "--all", types.Boolean, true, true, "test help", true)
-	//test("-a", "--all", types.Boolean, true, true, "test help", true)
+	test(0, "", "", types.Boolean, true, true, "test help")
 
 }

@@ -4,11 +4,13 @@ import (
 	"github.com/sam-caldwell/argparse/v2/argparse/descriptormap/descriptor"
 	"github.com/sam-caldwell/argparse/v2/argparse/types"
 	"github.com/sam-caldwell/argparse/v2/argparse/valid"
+	"github.com/sam-caldwell/counters/v2"
 	"strings"
 )
 
 // Add - Add the new descriptor to the descriptor map
-func (m *Map) Add(name, short, long string, typ types.ArgTypes, required bool, dValue any, help string) error {
+func (m *Map) Add(pos *counters.ConditionalCounter, name, short, long string, typ types.ArgTypes,
+	required bool, dValue any, help string) error {
 
 	// Make sure our map is initialized
 	if m.data == nil {
@@ -23,7 +25,7 @@ func (m *Map) Add(name, short, long string, typ types.ArgTypes, required bool, d
 
 	//Create a new descriptor
 	var argDesc descriptor.Descriptor
-	if err := argDesc.Add(short, long, typ, required, dValue, help); err != nil {
+	if err := argDesc.Add(pos, short, long, typ, required, dValue, help); err != nil {
 		return err
 	}
 

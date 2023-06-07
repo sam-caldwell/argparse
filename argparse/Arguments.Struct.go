@@ -3,6 +3,7 @@ package argparse
 import (
 	"github.com/sam-caldwell/argparse/v2/argparse/descriptormap"
 	"github.com/sam-caldwell/argparse/v2/argparse/parsed"
+	"github.com/sam-caldwell/counters/v2"
 	ordered "github.com/sam-caldwell/orderedset/v2"
 )
 
@@ -12,6 +13,7 @@ import (
 
 // Arguments - Top-Level ArgParse struct
 type Arguments struct {
+	pos            counters.ConditionalCounter
 	descriptors    descriptormap.Map
 	programName    string
 	preambleText   ordered.Set
