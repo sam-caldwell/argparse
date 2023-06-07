@@ -6,19 +6,19 @@ import (
 	"github.com/sam-caldwell/argparse/v2/argparse/types"
 )
 
-// Add - Add a new token to the TokenMap
-func (arg *TokenMap) Add(name *string, typ types.ArgTypes, value *any) error {
-	if arg.data == nil {
-		arg.data = make(map[string]token.Token)
+// Add - Add a new token to the Namespace
+func (ns *Namespace) Add(name *string, typ types.ArgTypes, value *any) error {
+	if ns.data == nil {
+		ns.data = make(map[string]token.Token)
 	}
-	if thisArg, ok := arg.data[*name]; ok {
+	if thisArg, ok := ns.data[*name]; ok {
 		if thisArg.GetType() != typ {
 			return fmt.Errorf(errTypeCannotChange, *name)
 		}
 		if err := thisArg.SetValue(*value); err != nil {
 			return err
 		}
-		arg.data[*name] = thisArg
+		ns.data[*name] = thisArg
 	} else {
 		// Create a new Token
 		var element token.Token
@@ -27,7 +27,7 @@ func (arg *TokenMap) Add(name *string, typ types.ArgTypes, value *any) error {
 			return err
 		}
 		// Store the new record in the map
-		arg.data[*name] = element
+		ns.data[*name] = element
 	}
 	return nil
 }

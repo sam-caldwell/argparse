@@ -7,7 +7,7 @@ import (
 )
 
 func TestArgumentElementMap_Exists(t *testing.T) {
-	var set TokenMap
+	var set Namespace
 	set.data = make(map[string]token.Token)
 
 	test := func(n string, typ types.ArgTypes, value any, expectRecord bool) {

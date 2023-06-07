@@ -7,11 +7,11 @@ import (
 
 func TestArgumentElementMap_Get(t *testing.T) {
 
-	var set TokenMap
+	var set Namespace
 
 	//test() is the test function that takes a name, type and value
 	test := func(n string, typ types.ArgTypes, value any) {
-		//Add element to the TokenMap.Add()
+		//Add element to the Namespace.Add()
 		err := set.Add(&n, typ, &value)
 		if err != nil {
 			t.Fatal(err)

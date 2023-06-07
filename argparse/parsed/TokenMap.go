@@ -4,7 +4,7 @@ import (
 	"github.com/sam-caldwell/argparse/v2/argparse/parsed/token"
 )
 
-// TokenMap - a map of Token objects
-type TokenMap struct {
+// Namespace - a map of Token objects
+type Namespace struct {
 	data map[string]token.Token
 }

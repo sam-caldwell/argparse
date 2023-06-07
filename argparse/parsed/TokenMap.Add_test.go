@@ -8,7 +8,7 @@ import (
 )
 
 func TestTokenMap_Add(t *testing.T) {
-	var set TokenMap
+	var set Namespace
 
 	test := func(n string, typ types.ArgTypes, value any, expectRecord bool, typeCheckFail bool) {
 		if err := set.Add(&n, typ, &value); err != nil {
