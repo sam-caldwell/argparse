@@ -18,7 +18,10 @@ func (arg *Descriptor) Add(pos *counters.ConditionalCounter, short string, long 
 	}
 
 	//Only increment position if positional argument.  otherwise store -1
-	arg.pos = pos.IncrementIf(arg.short == "" && arg.long == "")
+	arg.pos, err = pos.IncrementIf(arg.short == "" && arg.long == "")
+	if err != nil {
+		panic(err)
+	}
 
 	if err = arg.storeType(argType); err != nil {
 		return err
