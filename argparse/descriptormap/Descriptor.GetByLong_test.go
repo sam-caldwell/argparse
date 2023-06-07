@@ -22,7 +22,6 @@ func TestMap_GetByLong(t *testing.T) {
 	}
 
 	verifyRows := func(name, short, long string, typ types.ArgTypes, required bool, dValue any, help string) {
-		t.Logf("Verifying %s", name)
 		n, d := m.GetByLong(&long)
 
 		failIf(n == nil, "Error: nil name returned")

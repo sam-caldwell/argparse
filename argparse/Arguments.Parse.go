@@ -17,7 +17,7 @@ func (arg *Arguments) Parse() *Arguments {
 	var thisName *string
 	var thisDescriptor *descriptor.Descriptor = nil
 
-	for _, rawToken := range os.Args {
+	for _, rawToken := range os.Args[1:] {
 
 		// clean the token any intentional whitespace should be wrapped in quotes.
 		token := strings.TrimSpace(rawToken)
