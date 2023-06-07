@@ -55,11 +55,14 @@ func TestArguments_Help(t *testing.T) {
 		t.Fatal("Failing due to errors")
 	}
 
-	fmt.Println(strings.TrimSpace(helpText))
+	actualText := strings.TrimSpace(helpText)
+	expectedText := strings.TrimSpace(expected)
 
-	if strings.TrimSpace(helpText) != strings.TrimSpace(expected) {
-		actualLines := strings.Split(strings.TrimSpace(helpText), "\n")
-		expectedLines := strings.Split(strings.TrimSpace(expected), "\n")
+	fmt.Println(actualText)
+
+	if actualText != expectedText {
+		actualLines := strings.Split(actualText, "\n")
+		expectedLines := strings.Split(expectedText, "\n")
 
 		if len(actualLines) != len(expectedLines) {
 			t.Logf("count mismatch (actual: %d, expected: %d", len(actualLines), len(expectedLines))
