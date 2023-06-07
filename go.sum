@@ -1,5 +1,5 @@
-github.com/sam-caldwell/counters/v2 v2.0.1 h1:VE9FdsQs5dQn4k8DpGzU9g32J6XPaf9h5lHq5OLDGXw=
-github.com/sam-caldwell/counters/v2 v2.0.1/go.mod h1:UEoqWFcwgC9rGs7OV97vVU0MIP32jOSINvlqNKtvo1k=
+github.com/sam-caldwell/counters/v2 v2.0.2 h1:cDp1Uuv9G7IIIj3hpKRKm46V8Cws8AXgS6fj7kQcmNk=
+github.com/sam-caldwell/counters/v2 v2.0.2/go.mod h1:UEoqWFcwgC9rGs7OV97vVU0MIP32jOSINvlqNKtvo1k=
 github.com/sam-caldwell/orderedset/v2 v2.0.2 h1:YHYg99ceMYFgSr/Ufv5QD01BDV4f7vRh4aiykMoxyDE=
 github.com/sam-caldwell/orderedset/v2 v2.0.2/go.mod h1:oZ5EyLTaSGirH4KUymz1Jty4ZBbsXZ+aDVZH8ju7rwE=
 github.com/sam-caldwell/simpleset/v2 v2.0.2 h1:Q/S/AgDrrvTmI7tVL0fr06n9EOBqmp+r/twwopWlgOc=

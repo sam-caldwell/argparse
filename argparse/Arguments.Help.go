@@ -97,7 +97,10 @@ func (arg *Arguments) Help() (text string) {
 			longWidth = calcMaxWidth(localLong, longWidth)
 			longs = append(longs, localLong)
 
-			var localType string = argument.GetType()
+			var localType string = func() string {
+				a := argument.GetType()
+				return a.String()
+			}()
 			if localType == "Flag" {
 				localType = ""
 			}
