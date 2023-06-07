@@ -19,7 +19,7 @@ func TestMap_Get(t *testing.T) {
 	}
 	verifyRows := func(name, short, long string, typ types.ArgTypes, required bool, dValue any, help string) {
 		var d *descriptor.Descriptor
-		d = m.Get(name)
+		d = m.Get(&name)
 		if d == nil {
 			t.Fatalf("Error: row not found %s", name)
 		} else {
