@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/sam-caldwell/argparse/v2/argparse/types"
 	"github.com/sam-caldwell/utilities/v2"
+	"sort"
 	"strings"
 )
 
@@ -101,6 +102,16 @@ func (arg *Arguments) Help() (text string) {
 			}(),
 			help: argument.GetHelp(),
 		})
+	}
+	//Sort the data
+	sort.Slice(rows, func(i, j int) bool {
+		// Specify your sorting criteria here
+		// For example, sorting by the "name" field in ascending order
+		return rows[i].name < rows[j].name
+	})
+	// Print the sorted rows
+	for _, row := range rows {
+		fmt.Println(row)
 	}
 	//Calculate column widths
 	for _, row := range rows {
