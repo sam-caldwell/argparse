@@ -1,6 +1,7 @@
 package descriptor
 
 import (
+	"fmt"
 	"github.com/sam-caldwell/argparse/v2/argparse/types"
 	"github.com/sam-caldwell/counters/v2"
 )
@@ -23,6 +24,10 @@ func (arg *Descriptor) Add(pos *counters.ConditionalCounter, short string, long 
 		panic(err)
 	}
 
+	//positional arguments cannot be flags
+	if (arg.pos != optionalArgumentIndicator) && (argType == types.Flag) {
+		return fmt.Errorf(errPositionalArgumentCannotBeFlag)
+	}
 	if err = arg.storeType(argType); err != nil {
 		return err
 	}
