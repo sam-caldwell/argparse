@@ -9,5 +9,5 @@ func (m *Map) GetByShort(token *string) (*string, *descriptor.Descriptor) {
 			return token, &thisDesc
 		}
 	}
-	return token, nil
+	return nil, nil
 }
