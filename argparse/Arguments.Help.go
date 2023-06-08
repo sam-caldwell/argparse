@@ -106,8 +106,8 @@ func (arg *Arguments) Help() (text string) {
 	//Sort the data
 	sort.Slice(rows, func(i, j int) bool {
 		// Specify your sorting criteria here
-		// For example, sorting by the "name" field in ascending order
-		return rows[i].name < rows[j].name
+		// For example, sorting by the "short" field in ascending order
+		return rows[i].short < rows[j].short
 	})
 	// Print the sorted rows
 	for _, row := range rows {

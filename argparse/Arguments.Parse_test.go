@@ -37,12 +37,11 @@ func TestArguments_Parse(t *testing.T) {
 	//	Add("long", "-l", "--long", types.String, true, "no", "set bool").
 	//	ExitOnError().
 	//	Parse()
-
+	//
 	//if args.ErrorCount() != 0 {
 	//	for _, e := range args.Errors() {
 	//		t.Logf("Error: %s", e)
 	//	}
 	//	t.Fatalf("Errors encountered (count: %d)", args.ErrorCount())
 	//}
-
 }
