@@ -4,5 +4,5 @@ github.com/sam-caldwell/orderedset/v2 v2.0.2 h1:YHYg99ceMYFgSr/Ufv5QD01BDV4f7vRh
 github.com/sam-caldwell/orderedset/v2 v2.0.2/go.mod h1:oZ5EyLTaSGirH4KUymz1Jty4ZBbsXZ+aDVZH8ju7rwE=
 github.com/sam-caldwell/simpleset/v2 v2.0.2 h1:Q/S/AgDrrvTmI7tVL0fr06n9EOBqmp+r/twwopWlgOc=
 github.com/sam-caldwell/simpleset/v2 v2.0.2/go.mod h1:oQ+je3Bd8JpRy0kRWsky90Mpu/iWhveTmHxF5WLvGGE=
-github.com/sam-caldwell/utilities/v2 v2.0.2 h1:m/sEs8X/Es8cEET5Z7xhb74YSAtu+EIqyK+xI46MtOI=
-github.com/sam-caldwell/utilities/v2 v2.0.2/go.mod h1:GTdR4uv+9ANIEwMxdSh5jbRZlz0CKeeHhuoFGWs1FtI=
+github.com/sam-caldwell/utilities/v2 v2.0.3 h1:osHxDoCH7mn2owPDnNtthqtPN8NXfIMj6R7A3qbV4c4=
+github.com/sam-caldwell/utilities/v2 v2.0.3/go.mod h1:ZhOz/hl07PawmQAjTq7/sGK9Z+W/gF2ELcdtmDjiW0I=
