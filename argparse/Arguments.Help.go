@@ -2,152 +2,143 @@ package argparse
 
 import (
 	"fmt"
+	"github.com/sam-caldwell/argparse/v2/argparse/types"
+	"github.com/sam-caldwell/utilities/v2"
 	"strings"
 )
 
 // Help - Print Argument usage (help text)
 func (arg *Arguments) Help() (text string) {
+
+	const space = ' '
+	const empty = ""
+
+	//this is our output buffer
 	var lines []string
+
+	//post text to our lines buffer
 	post := func(indentSz int, line string) {
-		indent := func(sz int) string {
-			const indentation = "  "
-			prefix := ""
-			for i := 0; i < sz; i++ {
-				prefix = indentation
-			}
-			return prefix
-		}
-		lines = append(lines, fmt.Sprintf("%s", indent(indentSz)+line))
+		lines = append(lines, utilities.LeftPad(space, line, len(line)+indentSz))
 	}
-	printList := func(i int, list []any) {
-		for _, line := range arg.preambleText.List() {
+	newLine := func() {
+		post(0, empty)
+	}
+
+	type ListFunc func() []any
+	printList := func(i int, f ListFunc) {
+		for _, line := range f() {
 			post(i, line.(string))
 		}
 	}
-	pad := func(c rune, a int, b int) (p string) {
-		sz := b - a
-		for i := 0; i < sz; i++ {
-			p += string(c)
-		}
-		return p
-	}
-	calcMaxWidth := func(s string, cw int) int {
-		if w := len(s); w > cw {
-			return w
-		}
-		return cw
-	}
-	post(0, "")
+
+	/*
+	 * Generate output
+	 */
+	newLine()
 	post(0, arg.programName)
-	printList(1, arg.preambleText.List())
-
-	post(0, "")
+	printList(2, arg.preambleText.List)
+	newLine()
 	post(0, "Usage:")
-	post(1, fmt.Sprintf("%s [positional args] [optional args]", arg.programName))
-	post(0, "")
-	func() {
-		//get positional arguments
-		post(1, "Positional Arguments")
-		pos := 0
-		for name, argument := range arg.descriptors.List() {
-			if (argument.GetShort() != "") || (argument.GetLong() != "") {
-				continue
-			}
-			post(2, fmt.Sprintf(" %s - %s", name, argument.GetHelp()))
-			pos++
-		}
-		if pos == 0 {
-			post(2, "<none>")
-		}
-	}()
-	post(0, "")
-
-	func() {
-		const space = ' '
-		var shorts []string
-		var longs []string
-		var types []string
-		var fields []string
-		var defaults []string
-		var help []string
-		var shortWidth = 0
-		var longWidth = 0
-		var typeWidth = 0
-		var fieldWidth = 0
-		var defaultWidth = 0
-
-		post(1, "Optional Arguments")
-		shorts = append(shorts, "-h")
-		longs = append(longs, "--help")
-		types = append(types, "")
-		fields = append(fields, "help")
-		defaults = append(defaults, "")
-		help = append(help, "show this help message")
-
-		for name, argument := range arg.descriptors.List() {
-			if (argument.GetShort() == "") && (argument.GetLong() == "") {
-				continue
-			}
-
-			var localShort string = argument.GetShort()
-			shortWidth = calcMaxWidth(localShort, shortWidth)
-			shorts = append(shorts, localShort)
-
-			var localLong string = argument.GetLong()
-			longWidth = calcMaxWidth(localLong, longWidth)
-			longs = append(longs, localLong)
-
-			var localType string = func() string {
-				a := argument.GetType()
-				return a.String()
-			}()
-			if localType == "Flag" {
-				localType = ""
-			}
-			typeWidth = calcMaxWidth(localType, typeWidth) + 2
-			types = append(types, localType)
-
-			fields = append(fields, name)
-			if thisWidth := len(name); thisWidth > fieldWidth {
-				fieldWidth = thisWidth
-			}
-
-			var localDefault string = "default:" + argument.GetDefault()
-			if localType == "" {
-				localDefault = ""
-			}
-			defaultWidth = calcMaxWidth(localDefault, defaultWidth)
-			defaults = append(defaults, localDefault)
-
-			argHelp := argument.GetHelp()
-			help = append(help, argHelp)
-		}
-		makeLine := func(f string, w int) string {
-			return f + pad(space, len(f), w)
-		}
-
-		for i, _ := range shorts {
-			thisShort := makeLine(shorts[i], shortWidth)
-			thisLong := makeLine(longs[i], longWidth)
-			thisType := func() string {
-				if types[i] == "" {
-					return makeLine("", typeWidth)
-				}
-				return makeLine("<"+types[i]+">", typeWidth)
-			}()
-			thisField := makeLine(fields[i], fieldWidth)
-			thisDefault := makeLine(defaults[i], defaultWidth)
-
-			post(3, fmt.Sprintf("%s %s %s %s (%s) [%s] - %s",
-				thisShort, thisType, thisLong, thisType, thisField, thisDefault, help[i]))
-		}
-	}()
-
-	post(0, "")
-
-	for _, line := range arg.postscriptText.List() {
-		post(1, line.(string))
+	post(2, fmt.Sprintf("%s [positional args] [optional args]", arg.programName))
+	newLine()
+	//start: show positional arguments
+	post(2, "Positional Arguments")
+	if positionalArgs := arg.descriptors.ListPositionalArgs("%s [%s] - %s"); len(positionalArgs) == 0 {
+		post(4, "<none>")
+	} else {
+		printList(4, func() []any { return positionalArgs })
 	}
-	post(0, "")
+	newLine()
+	//finished: show positional arguments
+
+	//start: show optional arguments
+	post(1, "Optional Arguments")
+
+	type optionalArgs struct {
+		short  string
+		long   string
+		typ    string
+		name   string
+		dValue string
+		help   string
+	}
+	var rows []optionalArgs
+
+	var columnSizes struct {
+		short  int
+		long   int
+		typ    int
+		dValue int
+		help   int
+	}
+	rows = append(rows, optionalArgs{
+		short:  "-h",
+		long:   "--help",
+		typ:    "",
+		dValue: "",
+		help:   "show this help message",
+	})
+	//Get our columnar data
+	for _, argument := range arg.descriptors.List() {
+		if (argument.GetShort() == "") && (argument.GetLong() == "") {
+			continue
+		}
+		rows = append(rows, optionalArgs{
+			short: argument.GetShort(),
+			long:  argument.GetLong(),
+			typ: func() string {
+				a := argument.GetType()
+				if a == types.Flag {
+					return ""
+				}
+				return "[" + a.String() + "]"
+			}(),
+			dValue: func() string {
+				if argument.GetType() == types.Flag {
+					return ""
+				}
+				return "[default:" + argument.GetDefault() + "]"
+			}(),
+			help: argument.GetHelp(),
+		})
+	}
+	//Calculate column widths
+	for _, row := range rows {
+		if sz := len(row.short); sz > columnSizes.short {
+			columnSizes.short = sz
+		}
+		if sz := len(row.long); sz > columnSizes.long {
+			columnSizes.long = sz
+		}
+		if sz := len(row.typ); sz > columnSizes.typ {
+			columnSizes.typ = sz
+		}
+		if sz := len(row.dValue); sz > columnSizes.dValue {
+			columnSizes.dValue = sz
+		}
+		if sz := len(row.help); sz > columnSizes.help {
+			columnSizes.help = sz
+		}
+	}
+	for _, row := range rows {
+		showIfNotEmpty := func(showThis string, thisNotEmpty string) string {
+			if thisNotEmpty != "" {
+				return showThis
+			}
+			return utilities.RepeatChars(string(space), len(showThis))
+		}
+		post(4, fmt.Sprintf("%s %s %s %s %s - %s",
+			utilities.RightPad(space, row.short, columnSizes.short),
+			utilities.RightPad(space, showIfNotEmpty(row.typ, row.short), columnSizes.typ),
+			utilities.RightPad(space, row.long, columnSizes.long),
+			utilities.RightPad(space, showIfNotEmpty(row.typ, row.long), columnSizes.typ),
+			utilities.RightPad(space, row.dValue, columnSizes.dValue),
+			utilities.RightPad(space, row.help, columnSizes.help)))
+	}
+	newLine()
+
+	printList(1, arg.postscriptText.List)
+
+	newLine()
 	return strings.Join(lines, "\n")
 }

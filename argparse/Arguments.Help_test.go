@@ -7,7 +7,8 @@ import (
 	"testing"
 )
 
-const expected = `argparse.test
+const expected = `
+argparse.test
   This is a test program
   It does things...really cool things.
 
@@ -15,18 +16,21 @@ Usage:
   argparse.test [positional args] [optional args]
 
   Positional Arguments
-   pos - positional
+    noshort [String] - test no
+    pos [Integer] - positional
 
-  Optional Arguments
-  -h                 --help                 (help   ) [            ] - show this help message
-  -t <Boolean>       --test <Boolean>       (test   ) [default:true] - Test 1
-  -a <Boolean>       --all  <Boolean>       (all    ) [default:true] - Test all
-  -n                 --now                  (now    ) [            ] - test now
-     <String>        --nos  <String>        (noshort) [default:ns  ] - test no
+ Optional Arguments
+    -h           --help                          - show this help message
+    -t [Boolean] --test [Boolean] [default:true] - Test 1                
+    -a [Boolean] --all  [Boolean] [default:true] - Test all              
+    -n           --now                           - test now              
+                 --nos  [String]  [default:ns]   - test no               
 
-  This program has a postscript
-  The postscript comes after usage.
-  (c) 2023 Sam Caldwell <mail@samcaldwell.net>
+ This program has a postscript
+ The postscript comes after usage.
+ (c) 2023 Sam Caldwell <mail@samcaldwell.net>
+
+
 `
 
 func TestArguments_Help(t *testing.T) {
@@ -58,19 +62,32 @@ func TestArguments_Help(t *testing.T) {
 	actualText := strings.TrimSpace(helpText)
 	expectedText := strings.TrimSpace(expected)
 
+	fmt.Println("---")
 	fmt.Println(actualText)
+	fmt.Println("---")
 
 	if actualText != expectedText {
 		actualLines := strings.Split(actualText, "\n")
 		expectedLines := strings.Split(expectedText, "\n")
 
 		if len(actualLines) != len(expectedLines) {
-			t.Logf("count mismatch (actual: %d, expected: %d", len(actualLines), len(expectedLines))
+			t.Fatalf("count mismatch (actual: %d, expected: %d", len(actualLines), len(expectedLines))
 		}
 
-		for lineNo, line := range expectedLines {
-			matches := actualLines[lineNo] == expectedLines[lineNo]
-			t.Logf("%d (%v) : %s", lineNo, matches, line)
+		for line, _ := range expectedLines {
+			matches := actualLines[line] == expectedLines[line]
+			if !matches {
+				szActual := len(actualLines[line])
+				szExpected := len(expectedLines[line])
+
+				if szActual != szExpected {
+					t.Logf("  actual:%2d :'%s'", line, actualLines[line])
+					t.Logf("expected:%2d :'%s'", line, expectedLines[line])
+					t.Fatalf("%d: actual (%d) not expected (%d)", line, szActual, szExpected)
+				}
+				t.Logf("  actual:%2d :'%s'", line, actualLines[line])
+				t.Logf("expected:%2d :'%s'", line, expectedLines[line])
+			}
 		}
 		t.Fatal("help text does not match expected text")
 	}
