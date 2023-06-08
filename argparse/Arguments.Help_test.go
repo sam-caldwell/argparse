@@ -1,7 +1,6 @@
 package argparse
 
 import (
-	"fmt"
 	"github.com/sam-caldwell/argparse/v2/argparse/types"
 	"strings"
 	"testing"
@@ -59,9 +58,9 @@ func TestArguments_Help(t *testing.T) {
 	actualText := strings.TrimSpace(helpText)
 	expectedText := strings.TrimSpace(expected)
 
-	fmt.Println("---")
-	fmt.Println(actualText)
-	fmt.Println("---")
+	//fmt.Println("---")
+	//fmt.Println(actualText)
+	//fmt.Println("---")
 
 	if actualText != expectedText {
 		actualLines := strings.Split(actualText, "\n")

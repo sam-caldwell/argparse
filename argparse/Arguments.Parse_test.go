@@ -1,6 +1,7 @@
 package argparse
 
 import (
+	"os"
 	"testing"
 )
 
@@ -12,17 +13,17 @@ func TestArguments_Parse(t *testing.T) {
 	//		t.Fatalf(msg, params)
 	//	}
 	//}
-	//
-	//os.Args = []string{
-	//	"TestArguments_Parse", //Program name
-	//	"pos1",                //positional arg 0
-	//	"pos2",                //positional arg 1
-	//	"-a",                  //short arg (flag)
-	//	"-n", "5",             //short arg (int)
-	//	"-b", "true", //short arg (boolean)
-	//	"-f", "1.0", //short arg (float)
-	//	"--long", "yes", //long arg (string)
-	//}
+
+	os.Args = []string{
+		"argparse.test", //Program name
+		"pos1",          //positional arg 0
+		"pos2",          //positional arg 1
+		"-a",            //short arg (flag)
+		"-n", "5",       //short arg (int)
+		"-b", "true", //short arg (boolean)
+		"-f", "1.0", //short arg (float)
+		"--long", "yes", //long arg (string)
+	}
 	//
 	//args.
 	//	ProgramName().
