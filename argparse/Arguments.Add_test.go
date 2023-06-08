@@ -45,7 +45,7 @@ func TestArguments_Add(t *testing.T) {
 
 	p = 0
 	for i := 0; i < 4; i++ {
-		for n, _ := range []bool{true, false} {
+		for n := range []bool{true, false} {
 			name := fmt.Sprintf("name%d%d", i, n)
 			short := fmt.Sprintf("-%d", p)
 			long := fmt.Sprintf("--arg%d%d", i, n)
