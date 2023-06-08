@@ -1,2 +1,5 @@
 lint:
-	@echo "$@ not implemented"
+	@command -v golint &>/dev/null || go install golang.org/x/lint/golint
+	@go install golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@latest
+	@go vet ./...
+	@golint -set_exit_status ./...
