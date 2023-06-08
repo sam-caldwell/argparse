@@ -5,20 +5,20 @@ import (
 )
 
 // Typecheck -type-check the default value
-func (arg *ArgTypes) Typecheck(argDefault any) (err error) {
+func (arg *ArgTypes) Typecheck(value any) (err error) {
 	var ok bool
-	if argDefault != nil {
+	if value != nil {
 		switch *arg {
 		case Boolean:
-			_, ok = argDefault.(bool)
+			_, ok = value.(bool)
 		case Flag:
-			_, ok = argDefault.(bool)
+			_, ok = value.(bool)
 		case Float:
-			_, ok = argDefault.(float64)
+			_, ok = value.(float64)
 		case Integer:
-			_, ok = argDefault.(int)
+			_, ok = value.(int)
 		case String:
-			_, ok = argDefault.(string)
+			_, ok = value.(string)
 		default:
 			return fmt.Errorf(eMsgTypeCheckUnknown)
 		}
