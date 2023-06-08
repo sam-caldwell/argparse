@@ -12,7 +12,7 @@ func TestArguments_Preamble(t *testing.T) {
 		Preamble("test1").
 		Preamble("test2")
 
-	for i, _ := range arg.preambleText.List() {
+	for i := range arg.preambleText.List() {
 		expected := fmt.Sprintf("test%d", i)
 		if line := arg.preambleText.Pop(); line != expected {
 			t.Fatalf("%s expected Got '%s'", expected, line)

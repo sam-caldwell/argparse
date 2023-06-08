@@ -71,7 +71,7 @@ func TestArguments_Help(t *testing.T) {
 			t.Fatalf("count mismatch (actual: %d, expected: %d", len(actualLines), len(expectedLines))
 		}
 
-		for line, _ := range expectedLines {
+		for line := range expectedLines {
 			thisActualLine := strings.TrimSpace(actualLines[line])
 			thisExpectedLine := strings.TrimSpace(expectedLines[line])
 

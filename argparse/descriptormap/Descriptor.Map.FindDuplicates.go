@@ -5,6 +5,7 @@ import (
 	"github.com/sam-caldwell/simpleset/v2"
 )
 
+// FindDuplicates - find any duplicate arguments and throw and error
 func (m *Map) FindDuplicates() error {
 	var argSet simpleset.Set
 	var shortSet simpleset.Set
