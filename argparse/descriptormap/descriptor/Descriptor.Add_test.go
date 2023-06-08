@@ -16,15 +16,22 @@ func TestDescriptor_Add(t *testing.T) {
 				t.Fatal(err)
 			}
 		}
+		if (argDesc.pos >= 0) && (argDesc.pos != (pos.Value() - 1)) {
+			t.Fatalf("position %d does not match descriptor position %d", pos.Value()-1, argDesc.pos)
+		}
 	}
 
 	//Expect no issue
 	var pos counters.ConditionalCounter
-	test(&pos, "-a", "--all", types.Boolean, true, true, "test help")
+	test(&pos, "", "", types.Boolean, true, true, "test help0")
+	test(&pos, "", "", types.Boolean, true, true, "test help1")
+	test(&pos, "", "", types.Boolean, true, true, "test help2")
+	test(&pos, "", "", types.Boolean, true, true, "test help3")
+	test(&pos, "", "", types.Boolean, true, true, "test help4")
+
+	test(&pos, "-a", "--all", types.Boolean, true, true, "test help5")
 
 	//Expect error: -a is a duplicate.
-	test(&pos, "-a", "--all", types.Boolean, true, true, "test help")
-
-	test(&pos, "", "", types.Boolean, true, true, "test help")
+	test(&pos, "-a", "--all", types.Boolean, true, true, "test help6")
 
 }
