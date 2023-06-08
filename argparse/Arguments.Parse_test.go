@@ -17,8 +17,8 @@ func TestArguments_Parse(t *testing.T) {
 
 	os.Args = []string{
 		"argparse.test", //Program name
-		"pos1",          //positional arg 0
-		"pos2",          //positional arg 1
+		"pos1value",     //positional arg 0
+		"pos2value",     //positional arg 1
 		"-a",            //short arg (flag)
 		"-n", "5",       //short arg (int)
 		"-b", "true", //short arg (boolean)
@@ -31,14 +31,15 @@ func TestArguments_Parse(t *testing.T) {
 		Copyright(2023, "Sam Caldwell", "mail@samcaldwell.net>").
 		Preamble("This is a description of our Arguments Object.").
 		Postscript("This is the postfix string after help is dumped.").
-		Add("a0pos", "", "", types.String, true, "not set", "pos arg 1").
-		Add("a1pos", "", "", types.String, true, "not set", "pos arg 2").
+		Add("a0pos", "", "", types.String, true, "not set", "pos  1").
+		Add("a1pos", "", "", types.String, true, "not set", "pos  2").
 		Add("all", "-a", "--all", types.Flag, true, false, "All flag").
 		Add("number", "-n", "--number", types.Integer, true, 0, "set num").
-		Add("float", "-f", "--float", types.Boolean, true, false, "set float").
-		Add("long", "-l", "--long", types.String, true, "no", "set bool").
-		ExitOnError().
-		Parse()
+		Add("bool", "-b", "--bool", types.Boolean, true, false, "set bool").
+		Add("long", "-l", "--long", types.String, true, "no", "set string").
+		Add("float", "-f", "--float", types.Float, true, 3.14, "pi").
+		Parse().
+		ExitOnError()
 	//
 	//if args.ErrorCount() != 0 {
 	//	for _, e := range args.Errors() {

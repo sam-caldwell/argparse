@@ -11,5 +11,5 @@ const (
 
 	errFoundUndefinedArgument = "found undefined argument '%s'"
 
-	errPositionalArgumentFollowingOptional = "error: positional arguments cannot follow optional arguments"
+	errPositionalArgumentFollowingOptional = "error: positional arguments cannot follow optional arguments (position: %d)"
 )
